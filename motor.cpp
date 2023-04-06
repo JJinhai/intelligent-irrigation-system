@@ -15,8 +15,8 @@
 #define ENA 0  //left motor speed pin ENA connect to PCA9685 port 0
 #define ENB 1  //right motor speed pin ENB connect to PCA9685 port 1
 #define IN1 4  //Left motor IN1 connect to wPi pin# 4 (Physical 16,BCM GPIO 23)
-// #define IN2 5  //Left motor IN2 connect to wPi pin# 5 (Physical 18,BCM GPIO 24)
-#define IN2 7  //Left motor IN2 connect to wPi pin# 5 (Physical 18,BCM GPIO 24)
+#define IN2 5  //Left motor IN2 connect to wPi pin# 5 (Physical 18,BCM GPIO 24)
+// #define IN2 7  //Left motor IN2 connect to wPi pin# 5 (Physical 18,BCM GPIO 24)
 #define IN3 2  //right motor IN3 connect to wPi pin# 2 (Physical 13,BCM GPIO 27)
 #define IN4 3  //right motor IN4 connect to wPi pin# 3 (Physical 15,BCM GPIO 22)
 #define SPEED 2000
@@ -91,7 +91,39 @@ int main(void)
 		printf("Error in setup\n");
 		return fd;
 	}
- 
+  delay(1000);
+
+  pca9685PWMWrite(fd, 0, 0, 4095);
+  pca9685PWMWrite(fd, 1, 0, 4095);
+  pca9685PWMWrite(fd, 2, 0, 4095);
+  pca9685PWMWrite(fd, 3, 0, 4095);
+  pca9685PWMWrite(fd, 4, 0, 4095);
+  pca9685PWMWrite(fd, 5, 0, 4095);
+  pca9685PWMWrite(fd, 6, 0, 4095);
+  pca9685PWMWrite(fd, 7, 0, 4095);
+  delay(1000)
+  printf("clear state")
+
+  pca9685PWMWrite(fd, 0, 0, 0);
+  pca9685PWMWrite(fd, 1, 0, 0);
+  pca9685PWMWrite(fd, 2, 0, 0);
+  pca9685PWMWrite(fd, 3, 0, 0);
+  pca9685PWMWrite(fd, 4, 0, 0);
+  pca9685PWMWrite(fd, 5, 0, 0);
+  pca9685PWMWrite(fd, 6, 0, 0);
+  pca9685PWMWrite(fd, 7, 0, 0);
+
+  delay(5000)
+
+  pca9685PWMWrite(fd, 0, 0, 4095);
+  pca9685PWMWrite(fd, 1, 0, 4095);
+  pca9685PWMWrite(fd, 2, 0, 4095);
+  pca9685PWMWrite(fd, 3, 0, 4095);
+  pca9685PWMWrite(fd, 4, 0, 4095);
+  pca9685PWMWrite(fd, 5, 0, 4095);
+  pca9685PWMWrite(fd, 6, 0, 4095);
+  pca9685PWMWrite(fd, 7, 0, 4095);
+
 	go_advance(fd,SPEED);
 	delay(1000);
 	go_back(fd,SPEED);
