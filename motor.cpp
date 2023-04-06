@@ -91,9 +91,11 @@ void stop_car(int fd){
   pca9685PWMWrite(fd, 5, 0, 4095);
   pca9685PWMWrite(fd, 6, 0, 4095);
   pca9685PWMWrite(fd, 7, 0, 4095);
+  delay(100);
 }
 
 void go_back(int fd,int speed){
+  stop_car(fd);
   // pca9685PWMWrite(fd, Motor1_F, 0, 10);
   pca9685PWMWrite(fd, Motor1_B, 0, 10);
   // pca9685PWMWrite(fd, Motor2_F, 0, 10);
@@ -102,9 +104,9 @@ void go_back(int fd,int speed){
   pca9685PWMWrite(fd, Motor3_B, 0, 10);
   // pca9685PWMWrite(fd, Motor4_F, 0, 10);
   pca9685PWMWrite(fd, Motor4_B, 0, 10);
-  stop_car(fd);
 }
 void go_advance(int fd,int speed){
+  stop_car(fd);
   pca9685PWMWrite(fd, Motor1_F, 0, 10);
   // pca9685PWMWrite(fd, Motor1_B, 0, 10);
   pca9685PWMWrite(fd, Motor2_F, 0, 10);
@@ -113,9 +115,9 @@ void go_advance(int fd,int speed){
   // pca9685PWMWrite(fd, Motor3_B, 0, 10);
   pca9685PWMWrite(fd, Motor4_F, 0, 10);
   // pca9685PWMWrite(fd, Motor4_B, 0, 10);
-  stop_car(fd);
 }
 void go_left(int fd,int speed){
+  stop_car(fd);
   // pca9685PWMWrite(fd, Motor1_F, 0, 10);
   pca9685PWMWrite(fd, Motor1_B, 0, 10);
   // pca9685PWMWrite(fd, Motor2_F, 0, 10);
@@ -124,9 +126,9 @@ void go_left(int fd,int speed){
   // pca9685PWMWrite(fd, Motor3_B, 0, 10);
   pca9685PWMWrite(fd, Motor4_F, 0, 10);
   // pca9685PWMWrite(fd, Motor4_B, 0, 10);
-  stop_car(fd);
 }
 void go_right(int fd,int speed){
+  stop_car(fd);
   pca9685PWMWrite(fd, Motor1_F, 0, 10);
   // pca9685PWMWrite(fd, Motor1_B, 0, 10);
   pca9685PWMWrite(fd, Motor2_F, 0, 10);
@@ -135,7 +137,6 @@ void go_right(int fd,int speed){
   pca9685PWMWrite(fd, Motor3_B, 0, 10);
   // pca9685PWMWrite(fd, Motor4_F, 0, 10);
   pca9685PWMWrite(fd, Motor4_B, 0, 10);
-  stop_car(fd);
 }
 
 
