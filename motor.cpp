@@ -101,8 +101,8 @@ int main(void)
   pca9685PWMWrite(fd, 5, 0, 4095);
   pca9685PWMWrite(fd, 6, 0, 4095);
   pca9685PWMWrite(fd, 7, 0, 4095);
-  delay(1000)
-  printf("clear state")
+  delay(1000);
+  printf("clear state");
 
   pca9685PWMWrite(fd, 0, 0, 0);
   pca9685PWMWrite(fd, 1, 0, 0);
@@ -113,7 +113,7 @@ int main(void)
   pca9685PWMWrite(fd, 6, 0, 0);
   pca9685PWMWrite(fd, 7, 0, 0);
 
-  delay(5000)
+  delay(5000);
 
   pca9685PWMWrite(fd, 0, 0, 4095);
   pca9685PWMWrite(fd, 1, 0, 4095);
