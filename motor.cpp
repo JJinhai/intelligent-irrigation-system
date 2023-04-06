@@ -12,6 +12,15 @@
  * wiringPi C library use different GPIO pin number system from BCM pin numberwhich are often used by Python, 
  * you can lookup BCM/wPi/Physical pin relation by following Linux command : gpio readall
  */
+#define Motor1_F 1  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor1_B 0  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor2_F 2  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor2_B 3  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor3_F 5  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor3_B 4  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor4_F 7  //right motor speed pin ENB connect to PCA9685 port 1
+#define Motor4_B 6  //right motor speed pin ENB connect to PCA9685 port 1
+
 #define ENA 0  //left motor speed pin ENA connect to PCA9685 port 0
 #define ENB 1  //right motor speed pin ENB connect to PCA9685 port 1
 #define IN1 4  //Left motor IN1 connect to wPi pin# 4 (Physical 16,BCM GPIO 23)
@@ -104,14 +113,14 @@ int main(void)
   delay(1000);
   printf("clear state");
 
-  pca9685PWMWrite(fd, 0, 0, 0);
-  pca9685PWMWrite(fd, 1, 0, 0);
-  pca9685PWMWrite(fd, 2, 0, 0);
-  pca9685PWMWrite(fd, 3, 0, 0);
-  pca9685PWMWrite(fd, 4, 0, 0);
-  pca9685PWMWrite(fd, 5, 0, 0);
-  pca9685PWMWrite(fd, 6, 0, 0);
-  pca9685PWMWrite(fd, 7, 0, 0);
+  pca9685PWMWrite(fd, Motor1_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor1_B, 0, 10);
+  pca9685PWMWrite(fd, Motor2_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor2_B, 0, 10);
+  pca9685PWMWrite(fd, Motor3_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor3_B, 0, 10);
+  pca9685PWMWrite(fd, Motor4_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor4_B, 0, 10);
 
   delay(5000);
 
