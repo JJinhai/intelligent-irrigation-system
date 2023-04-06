@@ -41,78 +41,58 @@ void setup(){
  digitalWrite(IN3,LOW);
  digitalWrite(IN4,LOW);
 }
+// void go_back(int fd,int speed){
+//     digitalWrite(IN1,HIGH);
+//     digitalWrite(IN2,LOW);
+//     digitalWrite(IN3,HIGH);
+//     digitalWrite(IN4,LOW); 
+//     pca9685PWMWrite(fd, ENA, 0, speed);
+//     pca9685PWMWrite(fd, ENB, 0, speed);
+// }
+// void go_advance(int fd,int speed){
+//     digitalWrite(IN1,LOW);
+//     digitalWrite(IN2,HIGH);
+//     digitalWrite(IN3,LOW);
+//     digitalWrite(IN4,HIGH); 
+//     pca9685PWMWrite(fd, ENA, 0, speed);
+//     pca9685PWMWrite(fd, ENB, 0, speed);
+// }
+// void go_left(int fd,int speed){
+//     digitalWrite(IN1,HIGH);
+//     digitalWrite(IN2,LOW);
+//     digitalWrite(IN3,LOW);
+//     digitalWrite(IN4,HIGH); 
+//     pca9685PWMWrite(fd, ENA, 0, speed);
+//     pca9685PWMWrite(fd, ENB, 0, speed);
+// }
+// void go_right(int fd,int speed){
+//     digitalWrite(IN1,LOW);
+//     digitalWrite(IN2,HIGH);
+//     digitalWrite(IN3,HIGH);
+//     digitalWrite(IN4,LOW); 
+//     pca9685PWMWrite(fd, ENA, 0, speed);
+//     pca9685PWMWrite(fd, ENB, 0, speed);
+// }
+// void stop_car(int fd){
+//     digitalWrite(IN1,LOW);
+//     digitalWrite(IN2,LOW);
+//     digitalWrite(IN3,LOW);
+//     digitalWrite(IN4,LOW); 
+//     pca9685PWMWrite(fd, ENA, 0, 0);
+//     pca9685PWMWrite(fd, ENB, 0, 0);
+// }
+
 void go_back(int fd,int speed){
-    digitalWrite(IN1,HIGH);
-    digitalWrite(IN2,LOW);
-    digitalWrite(IN3,HIGH);
-    digitalWrite(IN4,LOW); 
-    pca9685PWMWrite(fd, ENA, 0, speed);
-    pca9685PWMWrite(fd, ENB, 0, speed);
+  // pca9685PWMWrite(fd, Motor1_F, 0, 10);
+  pca9685PWMWrite(fd, Motor1_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor2_F, 0, 10);
+  pca9685PWMWrite(fd, Motor2_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor3_F, 0, 10);
+  pca9685PWMWrite(fd, Motor3_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor4_F, 0, 10);
+  pca9685PWMWrite(fd, Motor4_B, 0, 10);
 }
 void go_advance(int fd,int speed){
-    digitalWrite(IN1,LOW);
-    digitalWrite(IN2,HIGH);
-    digitalWrite(IN3,LOW);
-    digitalWrite(IN4,HIGH); 
-    pca9685PWMWrite(fd, ENA, 0, speed);
-    pca9685PWMWrite(fd, ENB, 0, speed);
-}
-void go_left(int fd,int speed){
-    digitalWrite(IN1,HIGH);
-    digitalWrite(IN2,LOW);
-    digitalWrite(IN3,LOW);
-    digitalWrite(IN4,HIGH); 
-    pca9685PWMWrite(fd, ENA, 0, speed);
-    pca9685PWMWrite(fd, ENB, 0, speed);
-}
-void go_right(int fd,int speed){
-    digitalWrite(IN1,LOW);
-    digitalWrite(IN2,HIGH);
-    digitalWrite(IN3,HIGH);
-    digitalWrite(IN4,LOW); 
-    pca9685PWMWrite(fd, ENA, 0, speed);
-    pca9685PWMWrite(fd, ENB, 0, speed);
-}
-void stop_car(int fd){
-    digitalWrite(IN1,LOW);
-    digitalWrite(IN2,LOW);
-    digitalWrite(IN3,LOW);
-    digitalWrite(IN4,LOW); 
-    pca9685PWMWrite(fd, ENA, 0, 0);
-    pca9685PWMWrite(fd, ENB, 0, 0);
-}
-int main(void)
-{
-    if(wiringPiSetup()==-1){
-        printf("setup wiringPi failed!\n");
-        printf("please check your setup\n");
-        return -1;
-    }
-	setup();
-	
-   // 
-	printf("Lesson 1: Basic Movement\n");
- 
-	// Setup with pinbase 300 and i2c location 0x40
-	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-	if (fd < 0)
-	{
-		printf("Error in setup\n");
-		return fd;
-	}
-  delay(1000);
-
-  pca9685PWMWrite(fd, 0, 0, 4095);
-  pca9685PWMWrite(fd, 1, 0, 4095);
-  pca9685PWMWrite(fd, 2, 0, 4095);
-  pca9685PWMWrite(fd, 3, 0, 4095);
-  pca9685PWMWrite(fd, 4, 0, 4095);
-  pca9685PWMWrite(fd, 5, 0, 4095);
-  pca9685PWMWrite(fd, 6, 0, 4095);
-  pca9685PWMWrite(fd, 7, 0, 4095);
-  delay(1000);
-  printf("clear state");
-
   pca9685PWMWrite(fd, Motor1_F, 0, 10);
   // pca9685PWMWrite(fd, Motor1_B, 0, 10);
   pca9685PWMWrite(fd, Motor2_F, 0, 10);
@@ -121,9 +101,28 @@ int main(void)
   // pca9685PWMWrite(fd, Motor3_B, 0, 10);
   pca9685PWMWrite(fd, Motor4_F, 0, 10);
   // pca9685PWMWrite(fd, Motor4_B, 0, 10);
-
-  delay(5000);
-
+}
+void go_left(int fd,int speed){
+  // pca9685PWMWrite(fd, Motor1_F, 0, 10);
+  pca9685PWMWrite(fd, Motor1_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor2_F, 0, 10);
+  pca9685PWMWrite(fd, Motor2_B, 0, 10);
+  pca9685PWMWrite(fd, Motor3_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor3_B, 0, 10);
+  pca9685PWMWrite(fd, Motor4_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor4_B, 0, 10);
+}
+void go_right(int fd,int speed){
+  pca9685PWMWrite(fd, Motor1_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor1_B, 0, 10);
+  pca9685PWMWrite(fd, Motor2_F, 0, 10);
+  // pca9685PWMWrite(fd, Motor2_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor3_F, 0, 10);
+  pca9685PWMWrite(fd, Motor3_B, 0, 10);
+  // pca9685PWMWrite(fd, Motor4_F, 0, 10);
+  pca9685PWMWrite(fd, Motor4_B, 0, 10);
+}
+void stop_car(int fd){
   pca9685PWMWrite(fd, 0, 0, 4095);
   pca9685PWMWrite(fd, 1, 0, 4095);
   pca9685PWMWrite(fd, 2, 0, 4095);
@@ -132,18 +131,50 @@ int main(void)
   pca9685PWMWrite(fd, 5, 0, 4095);
   pca9685PWMWrite(fd, 6, 0, 4095);
   pca9685PWMWrite(fd, 7, 0, 4095);
+}
+
+
+int main(void)
+{
+    if(wiringPiSetup()==-1){
+        printf("setup wiringPi failed!\n");
+        printf("please check your setup\n");
+        return -1;
+    }
+	setup();
+
+	// Setup with pinbase 300 and i2c location 0x40
+	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+	if (fd < 0)
+	{
+		printf("Error in setup\n");
+		return fd;
+	}
+  printf("clear state");
+  stop_car(fd);
+	delay(1000);
+  printf("ready to go");
 
 	go_advance(fd,SPEED);
-	delay(1000);
+	delay(4000);
 	go_back(fd,SPEED);
-	delay(1000);
+	delay(4000);
 	go_left(fd,SPEED);
 	delay(1000);
 	go_right(fd,SPEED);
 	delay(1000);
-	go_right(fd,SPEED);
-	delay(1000);
 	stop_car(fd);
- 
+
+	// go_advance(fd,SPEED);
+	// delay(1000);
+	// go_back(fd,SPEED);
+	// delay(1000);
+	// go_left(fd,SPEED);
+	// delay(1000);
+	// go_right(fd,SPEED);
+	// delay(1000);
+	// go_right(fd,SPEED);
+	// delay(1000);
+	// stop_car(fd);
 	return 0;
 }
