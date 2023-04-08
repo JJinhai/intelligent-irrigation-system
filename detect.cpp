@@ -38,33 +38,33 @@ void run_motor(motor,L,M,R){
   }
 }
 
-int main(void){
-  if(wiringPiSetup()==-1){
-      printf("setup wiringPi failed!\n");
-      printf("please check your setup\n");
-      return -1;
-  }
-	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-  Motor motor=Motor()
-  Servo servo=Servo()
-  int L = 300,M = 300,R = 300;
-  while(True){
-    for(int i = 30 ; i < 151 ; i = i+60){
-      servo.setServo('0',i);
-      delay(0.2);
-      if(i==30){
-        L = self.get_distance();
-      }else if(i==90){
-        M = self.get_distance();
-      }else{
-        R = self.get_distance();
-      }
-    }
-    servo.setServo('0',90)
-    run_motor(motor,L,M,R)
-  }
-	return 0;
-}
+// int main(void){
+//   if(wiringPiSetup()==-1){
+//       printf("setup wiringPi failed!\n");
+//       printf("please check your setup\n");
+//       return -1;
+//   }
+// 	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+//   Motor motor=Motor()
+//   Servo servo=Servo()
+//   int L = 300,M = 300,R = 300;
+//   while(True){
+//     for(int i = 30 ; i < 151 ; i = i+60){
+//       servo.setServo('0',i);
+//       delay(0.2);
+//       if(i==30){
+//         L = self.get_distance();
+//       }else if(i==90){
+//         M = self.get_distance();
+//       }else{
+//         R = self.get_distance();
+//       }
+//     }
+//     servo.setServo('0',90)
+//     run_motor(motor,L,M,R)
+//   }
+// 	return 0;
+// }
 
     
     
