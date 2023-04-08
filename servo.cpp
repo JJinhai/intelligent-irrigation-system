@@ -7,19 +7,31 @@
 #define MAX_PWM 4096
 #define HERTZ 50
 
-void setServo(int fd,int chanel,int angle){
-  int error = 10;
-  int port = 0;
-  int pulse = 0;
-  if(chanel==0){
-    port = 8;
-    pulse = 2500-int((angle+error)/0.09);
-  }else if(chanel==1){
-    port = 9;
-    pulse = 500+int((angle+error)/0.09);
+
+class Servor{
+  public:
+   int fd;
+   Motor(){
+    fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+    if (fd < 0){
+      printf("Error in setup\n");
+
+    }
+   }
+  void setServo(int chanel,int angle){
+    int error = 10;
+    int port = 0;
+    int pulse = 0;
+    if(chanel==0){
+      port = 8;
+      pulse = 2500-int((angle+error)/0.09);
+    }else if(chanel==1){
+      port = 9;
+      pulse = 500+int((angle+error)/0.09);
+    }
+    pulse = pulse*4096/20000;
+    pca9685PWMWrite(fd, port, 0, pulse);
   }
-  pulse = pulse*4096/20000;
-  pca9685PWMWrite(fd, port, 0, pulse);
 }
 
 int main(void){
@@ -28,17 +40,17 @@ int main(void){
       printf("please check your setup\n");
       return -1;
   }
-	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-  setServo(fd,0,0);
+	Servor serv1= Servor();
+  Serv1.setServo(0,0);
   delay(500);
-  setServo(fd,0,90);
+  Serv1.setServo(0,90);
   delay(500);
-  setServo(fd,0,180);
+  Serv1.setServo(0,180);
   delay(500);
-  setServo(fd,1,0);
+  Serv1.setServo(1,0);
   delay(500);
-  setServo(fd,1,90);
+  Serv1.setServo(1,90);
   delay(500);
-  setServo(fd,1,180);
+  Serv1.setServo(1,180);
 	return 0;
 }
