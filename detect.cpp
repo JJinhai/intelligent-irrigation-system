@@ -11,7 +11,7 @@
 #define HERTZ 50
 
 void run_motor(motor,L,M,R){
-  if (L < 30 and M < 30 and R <30){
+  if (L < 30 && M < 30 && R <30){
     motor.MotorGo(-1450,-1450,-1450,-1450) 
     dealy(0.1);
     if(L < R){
@@ -19,9 +19,9 @@ void run_motor(motor,L,M,R){
     }else{
       motor.MotorGo(-1450,-1450,1450,1450)
     }
-  }else if(L < 30 and M < 30){
+  }else if(L < 30 && M < 30){
     motor.MotorGo(1500,1500,-1500,-1500)
-  }else if( R < 30 and M < 30){
+  }else if( R < 30 && M < 30){
     motor.MotorGo(-1500,-1500,1500,1500)
   }else if( L < 20 ){
     motor.MotorGo(2000,2000,-500,-500)
@@ -36,7 +36,7 @@ void run_motor(motor,L,M,R){
   }else {
     motor.MotorGo(600,600,600,600)
   }
-}
+};
 
 int main(void){
   if(wiringPiSetup()==-1){
@@ -45,23 +45,25 @@ int main(void){
       return -1;
   }
 	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-  Motor motor=Motor()
-  Servo servo=Servo()
+  Motor motor=Motor();
+  Servo servo=Servo();
+  Ultrasonic u = Ultrasonic()
   int L = 300,M = 300,R = 300;
-  while(True){
+  int t0 = time(0);
+  while(time(0)-t0 < 60){
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo('0',i);
       delay(0.2);
       if(i==30){
-        L = self.get_distance();
+        L = u.getDistance();
       }else if(i==90){
-        M = self.get_distance();
+        M = u.getDistance();
       }else{
-        R = self.get_distance();
+        R = u.getDistance();
       }
     }
-    servo.setServo('0',90)
-    run_motor(motor,L,M,R)
+    servo.setServo('0',90);
+    run_motor(motor,L,M,R);
   }
 	return 0;
 }
