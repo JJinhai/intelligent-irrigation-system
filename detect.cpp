@@ -2,6 +2,7 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "motor.cpp"
 #include "servo.cpp"
 #include "ultrasonic.cpp"
@@ -10,7 +11,7 @@
 #define MAX_PWM 4096
 #define HERTZ 50
 
-void run_motor(motor,L,M,R){
+void run_motor(Motor motor,int L,int M,int R){
   if (L < 30 && M < 30 && R <30){
     motor.MotorGo(-1450,-1450,-1450,-1450);
     dealy(0.1);
