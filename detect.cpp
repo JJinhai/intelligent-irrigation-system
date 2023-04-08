@@ -54,7 +54,8 @@ int main(void){
   while(time(0)-t0 < 60){     
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo('0',i);
-      delay(0.2);
+      int t1 = time(0);
+      while(time(0) - t1 < 1){}
       if(i==30){
         L = u.getDistance();
       }else if(i==90){
