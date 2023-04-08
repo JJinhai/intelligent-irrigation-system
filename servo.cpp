@@ -7,17 +7,19 @@
 #define MAX_PWM 4096
 #define HERTZ 50
 
-void setServo(int fd,int channel,int angle){
+void setServo(int fd,int chanel,int angle){
   int error = 10;
-  if(channel==0){
-    chanel = 8;
-    pulse = 2500-int((angle+error)/0.09;
-  }else if(channelc==1){
-    chanel = 9;
+  int port = 0;
+  int pulse = 0;
+  if(chanel==0){
+    port = 8;
+    pulse = 2500-int((angle+error)/0.09);
+  }else if(chanel==1){
+    port = 9;
     pulse = 500+int((angle+error)/0.09);
   }
   pulse = pulse*4096/20000;
-  pca9685PWMWrite(fd, chanel, 0, pulse);
+  pca9685PWMWrite(fd, port, 0, pulse);
 }
 
 int main(void){
