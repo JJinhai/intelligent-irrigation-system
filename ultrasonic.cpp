@@ -10,10 +10,11 @@
 #define TimeOut MAX_DISTANCE*60
 
 class Ultrasonic{
-  Ultrasonic(){
-    pinMode(Trigger_pin,OUTPUT);
-    pinMode(Echo_pin,INPUT);
-  }
+  public:
+    Ultrasonic(){
+      pinMode(Trigger_pin,OUTPUT);
+      pinMode(Echo_pin,INPUT);
+    }
   long getTime(){
     struct timeval tv1;
     gettimeofday(&tv1, NULL);
@@ -45,10 +46,9 @@ class Ultrasonic{
       distance_cm[i] = pulseTime;
     }
     std::sort(distance_cm, distance_cm + 5); // 调用std::sort函数对数组进行排序
-    printf("the distance is %d cm",distance_cm[2]);
     return distance_cm[2];
   }
-}
+};
 
 
 int main(void){
@@ -57,8 +57,8 @@ int main(void){
     printf("please check your setup\n");
     return -1;
   }
-  Ultrasonic u = new Ultrasonic();
+  Ultrasonic u = Ultrasonic();
   int d = u.getDistance();
-  printf("the distance is %d cm",distance_cm[2]);
+  printf("the distance is %d cm",d);
   return 0;
 }
