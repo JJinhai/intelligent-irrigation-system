@@ -19,7 +19,7 @@ long getTime(){
   return tv1.tv_sec * 1000000 + tv1.tv_usec;
 }
 int pulseIn(){
-  int t0 = getTime();
+  long t0 = getTime();
   while(digitalRead(Echo_pin) != HIGH){
     if((getTime() - t0) > TimeOut){
       return 0;
