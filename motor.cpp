@@ -38,7 +38,7 @@ class Motor{
     fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
     if (fd < 0){
       printf("Error in setup\n");
-      return fd;
+
     }
    }
   void left_Upper_Wheel(int fd,int speed){
@@ -99,7 +99,19 @@ class Motor{
     right_Upper_Wheel(fd,speed3);
     right_Lower_Wheel(fd,speed4);
   }
-}
+  void stop_car(){
+    pca9685PWMWrite(fd, 0, 0, 4095);
+    pca9685PWMWrite(fd, 1, 0, 4095);
+    pca9685PWMWrite(fd, 2, 0, 4095);
+    pca9685PWMWrite(fd, 3, 0, 4095);
+    pca9685PWMWrite(fd, 4, 0, 4095);
+    pca9685PWMWrite(fd, 5, 0, 4095);
+    pca9685PWMWrite(fd, 6, 0, 4095);
+    pca9685PWMWrite(fd, 7, 0, 4095);
+    delay(100);
+  }
+
+};
 
 
 
@@ -117,20 +129,6 @@ void setup(){
  digitalWrite(IN4,LOW);
 }
 
-void stop_car(int fd){
-  pca9685PWMWrite(fd, 0, 0, 4095);
-  pca9685PWMWrite(fd, 1, 0, 4095);
-  pca9685PWMWrite(fd, 2, 0, 4095);
-  pca9685PWMWrite(fd, 3, 0, 4095);
-  pca9685PWMWrite(fd, 4, 0, 4095);
-  pca9685PWMWrite(fd, 5, 0, 4095);
-  pca9685PWMWrite(fd, 6, 0, 4095);
-  pca9685PWMWrite(fd, 7, 0, 4095);
-  delay(100);
-}
-
-
-
 int main(void)
 {
     if(wiringPiSetup()==-1){
@@ -143,14 +141,15 @@ int main(void)
 	// Setup with pinbase 300 and i2c location 0x40
 	
   printf("clear state");
-  stop_car(fd);
+  
 	delay(1000);
   printf("ready to go");
   Motor m1 = Motor();
+  m1.stop_car();
+  delay(1000);
 	m1.MotorGo(fd,1000,1000,1000,1000);
-	delay(4000);
-	
-	stop_car(fd);
+	delay(2000);
+  m1.stop_car();
 
 	
 	return 0;
