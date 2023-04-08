@@ -39,35 +39,35 @@ void run_motor(Motor motor,int L,int M,int R){
   }
 };
 
- int main(void){
-   if(wiringPiSetup()==-1){
-       printf("setup wiringPi failed!\n");
-       printf("please check your setup\n");
-       return -1;
-   }
- 	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-  Motor motor=Motor(fd);
-  Servo servo=Servo(fd);
-  Ultrasonic u = Ultrasonic();
-  int L = 300,M = 300,R = 300;
-  int t0 = time(0);
-  while(time(0)-t0 < 60){     
-  for(int i = 30 ; i < 151 ; i = i+60){
-      servo.setServo('0',i);
-      delay(0.2);
-      if(i==30){
-        L = u.getDistance();
-      }else if(i==90){
-        M = u.getDistance();
-      }else{
-        R = u.getDistance();
-      }
-    }
-    servo.setServo('0',90);
-    run_motor(motor,L,M,R);
+int main(void){
+  if(wiringPiSetup()==-1){
+      printf("setup wiringPi failed!\n");
+      printf("please check your setup\n");
+      return -1;
   }
- 	return 0;
- }
+int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+Motor motor=Motor(fd);
+Servo servo=Servo(fd);
+Ultrasonic u = Ultrasonic();
+int L = 300,M = 300,R = 300;
+int t0 = time(0);
+while(time(0)-t0 < 60){     
+  for(int i = 30 ; i < 151 ; i = i+60){
+    servo.setServo('0',i);
+    delay(0.2);
+    if(i==30){
+      L = u.getDistance();
+    }else if(i==90){
+      M = u.getDistance();
+    }else{
+      R = u.getDistance();
+    }
+  }
+  servo.setServo('0',90);
+  run_motor(motor,L,M,R);
+}
+return 0;
+}
 
     
     

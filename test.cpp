@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <algorithm>
 #include "ultrasonic.cpp"
+#include "motor.cpp"
 
 int main(void){
   if(wiringPiSetup()==-1){
@@ -15,5 +16,12 @@ int main(void){
   Ultrasonic u = Ultrasonic();
   int d = u.getDistance();
   printf("Main the distance is %d cm",d);
+
+  Motor m1 = Motor();
+  m1.stop_car();
+  delay(1000);
+  m1.MotorGo(1000,1000,1000,1000);
+  m1.stop_car();
+
   return 0;
 }
