@@ -93,11 +93,14 @@ class Motor{
       }
   }
 
-  void MotorGo(int speed1,int speed2,int speed3,int speed4){
+  void MotorGo(int speed1,int speed2,int speed3,int speed4,int duration = 1000){
+    stop_car();
     left_Upper_Wheel(fd,speed1);
     left_Lower_Wheel(fd,speed2);
     right_Upper_Wheel(fd,speed3);
     right_Lower_Wheel(fd,speed4);
+    delay(duration);
+    stop_car();
   }
   void stop_car(){
     pca9685PWMWrite(fd, 0, 0, 4095);
@@ -129,28 +132,28 @@ void setup(){
  digitalWrite(IN4,LOW);
 }
 
-// int main(void)
-// {
-//     if(wiringPiSetup()==-1){
-//         printf("setup wiringPi failed!\n");
-//         printf("please check your setup\n");
-//         return -1;
-//     }
-// 	setup();
+int main(void)
+{
+    if(wiringPiSetup()==-1){
+        printf("setup wiringPi failed!\n");
+        printf("please check your setup\n");
+        return -1;
+    }
+	setup();
 
-// 	// Setup with pinbase 300 and i2c location 0x40
+	// Setup with pinbase 300 and i2c location 0x40
 	
-//   printf("clear state");
+  printf("clear state");
   
-// 	delay(1000);
-//   printf("ready to go");
-//   Motor m1 = Motor();
-//   m1.stop_car();
-//   delay(1000);
-// 	m1.MotorGo(1000,1000,1000,1000);
-// 	delay(2000);
-//   m1.stop_car();
+	delay(1000);
+  printf("ready to go");
+  Motor m1 = Motor();
+  m1.stop_car();
+  delay(1000);
+	m1.MotorGo(1000,1000,1000,1000);
+	delay(2000);
+  m1.stop_car();
 
 	
-// 	return 0;
-// }
+	return 0;
+}
