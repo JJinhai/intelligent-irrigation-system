@@ -53,8 +53,8 @@ int main(void){
   int t0 = time(0);
   while(time(0)-t0 < 60){     
     for(int i = 30 ; i < 151 ; i = i+60){
-      servo.setServo('0',i);
-      delay(0.2);
+      servo.setServo(0,i);
+      delay(1000);
       if(i==30){
         L = u.getDistance();
       }else if(i==90){
@@ -63,7 +63,7 @@ int main(void){
         R = u.getDistance();
       }
     }
-    servo.setServo('0',90);
+    servo.setServo(0,90);
     run_motor(motor,L,M,R);
   }
   return 0;
