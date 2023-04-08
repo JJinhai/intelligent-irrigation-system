@@ -147,7 +147,7 @@ int main(void)
   Motor m1 = Motor();
   m1.stop_car();
   delay(1000);
-	m1.MotorGo(fd,1000,1000,1000,1000);
+	m1.MotorGo(1000,1000,1000,1000);
 	delay(2000);
   m1.stop_car();
 

@@ -8,14 +8,13 @@
 #define HERTZ 50
 
 
-class Servor{
+class Servo{
   public:
    int fd;
-   Motor(){
+   Servo(){
     fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
     if (fd < 0){
       printf("Error in setup\n");
-
     }
    }
   void setServo(int chanel,int angle){
@@ -32,7 +31,7 @@ class Servor{
     pulse = pulse*4096/20000;
     pca9685PWMWrite(fd, port, 0, pulse);
   }
-}
+};
 
 int main(void){
   if(wiringPiSetup()==-1){
@@ -40,17 +39,17 @@ int main(void){
       printf("please check your setup\n");
       return -1;
   }
-	Servor serv1= Servor();
-  Serv1.setServo(0,0);
+	Servo serv1= Servo();
+  serv1.setServo(0,0);
   delay(500);
-  Serv1.setServo(0,90);
+  serv1.setServo(0,90);
   delay(500);
-  Serv1.setServo(0,180);
+  serv1.setServo(0,180);
   delay(500);
-  Serv1.setServo(1,0);
+  serv1.setServo(1,0);
   delay(500);
-  Serv1.setServo(1,90);
+  serv1.setServo(1,90);
   delay(500);
-  Serv1.setServo(1,180);
+  serv1.setServo(1,180);
 	return 0;
 }
