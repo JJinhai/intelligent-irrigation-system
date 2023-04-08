@@ -48,7 +48,7 @@ void run_motor(Motor motor,int L,int M,int R){
  	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
   Motor motor=Motor(fd);
   Servo servo=Servo(fd);
-  Ultrasonic u = Ultrasonic(fd);
+  Ultrasonic u = Ultrasonic();
   int L = 300,M = 300,R = 300;
   int t0 = time(0);
   while(time(0)-t0 < 60){     
