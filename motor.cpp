@@ -34,17 +34,67 @@
 
 
 
-void left_Upper_Wheel(duty):
-    if duty>0:
-        self.pwm.setMotorPwm(0,0)
-        self.pwm.setMotorPwm(1,duty)
-    elif duty<0:
-        self.pwm.setMotorPwm(1,0)
-        self.pwm.setMotorPwm(0,abs(duty))
-    else:
-        self.pwm.setMotorPwm(0,4095)
-        self.pwm.setMotorPwm(1,4095)
+void left_Upper_Wheel(int fd,int speed){
+    if(speed>0){
+      pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
+    }
+    else if(speed<0){
+      pca9685PWMWrite(fd, Motor1_B, 0, 4095-speed);
+    }	 
+    else{
+      pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
+      pca9685PWMWrite(fd, Motor1_B, 0, 4095-speed);
+    }
+}
 
+void left_Lower_Wheel(int fd,int speed){
+    if(speed>0){
+      pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
+    }
+    else if(speed<0){
+      pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+    }	 
+    else{
+      pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
+      pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+    }
+}
+
+void right_Lower_Wheel(int fd,int speed){
+    if(speed>0){
+      pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
+    }
+    else if(speed<0){
+      pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+    }	 
+    else{
+      pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
+      pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+    }
+}
+
+void right_Upper_Wheel(int fd,int speed){
+    if(speed>0){
+      pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
+    }
+    else if(speed<0){
+      pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+    }	 
+    else{
+      pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
+      pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+    }
+}
+
+
+void MotorGo(int fd,int speed1,int speed2,int speed3,int speed4){
+  left_Upper_Wheel(fd,speed1);
+  left_Lower_Wheel(fd,speed2);
+  right_Upper_Wheel(fd,speed3);
+  right_Lower_Wheel(fd,speed4);
+
+}
+     
 
 // initialize  IN1,IN2,IN3,IN4 
 void setup(){
@@ -70,51 +120,6 @@ void stop_car(int fd){
   delay(100);
 }
 
-void go_back(int fd,int speed){
-  stop_car(fd);
-  // pca9685PWMWrite(fd, Motor1_F, 0, 10);
-  pca9685PWMWrite(fd, Motor1_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor2_F, 0, 10);
-  pca9685PWMWrite(fd, Motor2_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor3_F, 0, 10);
-  pca9685PWMWrite(fd, Motor3_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor4_F, 0, 10);
-  pca9685PWMWrite(fd, Motor4_B, 0, 10);
-}
-void go_advance(int fd,int speed){
-  stop_car(fd);
-  pca9685PWMWrite(fd, Motor1_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor1_B, 0, 10);
-  pca9685PWMWrite(fd, Motor2_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor2_B, 0, 10);
-  pca9685PWMWrite(fd, Motor3_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor3_B, 0, 10);
-  pca9685PWMWrite(fd, Motor4_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor4_B, 0, 10);
-}
-void go_left(int fd,int speed){
-  stop_car(fd);
-  // pca9685PWMWrite(fd, Motor1_F, 0, 10);
-  pca9685PWMWrite(fd, Motor1_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor2_F, 0, 10);
-  pca9685PWMWrite(fd, Motor2_B, 0, 10);
-  pca9685PWMWrite(fd, Motor3_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor3_B, 0, 10);
-  pca9685PWMWrite(fd, Motor4_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor4_B, 0, 10);
-}
-void go_right(int fd,int speed){
-  stop_car(fd);
-  pca9685PWMWrite(fd, Motor1_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor1_B, 0, 10);
-  pca9685PWMWrite(fd, Motor2_F, 0, 10);
-  // pca9685PWMWrite(fd, Motor2_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor3_F, 0, 10);
-  pca9685PWMWrite(fd, Motor3_B, 0, 10);
-  // pca9685PWMWrite(fd, Motor4_F, 0, 10);
-  pca9685PWMWrite(fd, Motor4_B, 0, 10);
-}
-
 
 
 int main(void)
@@ -138,26 +143,11 @@ int main(void)
 	delay(1000);
   printf("ready to go");
 
-	go_advance(fd,SPEED);
+	MotorGo(fd,1000,1000,1000,1000);
 	delay(4000);
-	go_back(fd,SPEED);
-	delay(4000);
-	go_left(fd,SPEED);
-	delay(1000);
-	go_right(fd,SPEED);
-	delay(1000);
+	
 	stop_car(fd);
 
-	// go_advance(fd,SPEED);
-	// delay(1000);
-	// go_back(fd,SPEED);
-	// delay(1000);
-	// go_left(fd,SPEED);
-	// delay(1000);
-	// go_right(fd,SPEED);
-	// delay(1000);
-	// go_right(fd,SPEED);
-	// delay(1000);
-	// stop_car(fd);
+	
 	return 0;
 }
