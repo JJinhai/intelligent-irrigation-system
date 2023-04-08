@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
-#define Trigger_pin 27
-#define Echo_pin 22
+#define Trigger_pin 2
+#define Echo_pin 3
 #define MAX_DISTANCE 300    
 #define TimeOut MAX_DISTANCE*60
 
@@ -31,6 +31,11 @@ int pulseIn(){
 }
 
 int main(void){
+  if(wiringPiSetup()==-1){
+    printf("setup wiringPi failed!\n");
+    printf("please check your setup\n");
+    return -1;
+  }
   pinMode(Trigger_pin,OUTPUT);
   pinMode(Echo_pin,INPUT);
   int distance_cm[5] = { 0, 0, 0, 0, 0 }; // 待排序的数组
