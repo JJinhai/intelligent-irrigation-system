@@ -33,23 +33,23 @@ class Servo{
   }
 };
 
-int main(void){
-  if(wiringPiSetup()==-1){
-      printf("setup wiringPi failed!\n");
-      printf("please check your setup\n");
-      return -1;
-  }
-	Servo serv1= Servo();
-  serv1.setServo(0,0);
-  delay(500);
-  serv1.setServo(0,90);
-  delay(500);
-  serv1.setServo(0,180);
-  delay(500);
-  serv1.setServo(1,0);
-  delay(500);
-  serv1.setServo(1,90);
-  delay(500);
-  serv1.setServo(1,180);
-	return 0;
-}
+// int main(void){
+//   if(wiringPiSetup()==-1){
+//       printf("setup wiringPi failed!\n");
+//       printf("please check your setup\n");
+//       return -1;
+//   }
+// 	Servo serv1= Servo();
+//   serv1.setServo(0,0);
+//   delay(500);
+//   serv1.setServo(0,90);
+//   delay(500);
+//   serv1.setServo(0,180);
+//   delay(500);
+//   serv1.setServo(1,0);
+//   delay(500);
+//   serv1.setServo(1,90);
+//   delay(500);
+//   serv1.setServo(1,180);
+// 	return 0;
+// }

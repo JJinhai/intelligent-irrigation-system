@@ -24,13 +24,13 @@ class Ultrasonic{
     long t0 = getTime();
     while(digitalRead(Echo_pin) != HIGH){
       if((getTime() - t0) > TimeOut){
-        return 0;
+        return 17647;
       }
     }
     t0 = getTime();
     while(digitalRead(Echo_pin) == HIGH){
       if((getTime() - t0) > TimeOut){
-        return 0;
+        return 17647;
       }
     }
     int pulseTime = (getTime() - t0);
@@ -51,14 +51,14 @@ class Ultrasonic{
 };
 
 
-int main(void){
-  if(wiringPiSetup()==-1){
-    printf("setup wiringPi failed!\n");
-    printf("please check your setup\n");
-    return -1;
-  }
-  Ultrasonic u = Ultrasonic();
-  int d = u.getDistance();
-  printf("the distance is %d cm",d);
-  return 0;
-}
+// int main(void){
+//   if(wiringPiSetup()==-1){
+//     printf("setup wiringPi failed!\n");
+//     printf("please check your setup\n");
+//     return -1;
+//   }
+//   Ultrasonic u = Ultrasonic();
+//   int d = u.getDistance();
+//   printf("the distance is %d cm",d);
+//   return 0;
+// }
