@@ -2,36 +2,39 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "motor.cpp"
+#include "servo.cpp"
+#include "ultrasonic.cpp"
 
 #define PIN_BASE 300
 #define MAX_PWM 4096
 #define HERTZ 50
 
-void run_motor(self,L,M,R){
+void run_motor(motor,L,M,R){
   if (L < 30 and M < 30 and R <30){
-    self.PWM.setMotorModel(-1450,-1450,-1450,-1450) 
+    motor.MotorGo(-1450,-1450,-1450,-1450) 
     dealy(0.1);
     if(L < R){
-      self.PWM.setMotorModel(1450,1450,-1450,-1450)
+      motor.MotorGo(1450,1450,-1450,-1450)
     }else{
-      self.PWM.setMotorModel(-1450,-1450,1450,1450)
+      motor.MotorGo(-1450,-1450,1450,1450)
     }
   }else if(L < 30 and M < 30){
-    PWM.setMotorModel(1500,1500,-1500,-1500)
+    motor.MotorGo(1500,1500,-1500,-1500)
   }else if( R < 30 and M < 30){
-    PWM.setMotorModel(-1500,-1500,1500,1500)
+    motor.MotorGo(-1500,-1500,1500,1500)
   }else if( L < 20 ){
-    PWM.setMotorModel(2000,2000,-500,-500)
+    motor.MotorGo(2000,2000,-500,-500)
     if(L < 10){
-      PWM.setMotorModel(1500,1500,-1000,-1000)
+      motor.MotorGo(1500,1500,-1000,-1000)
     }
   }else if(R < 20){
-    PWM.setMotorModel(-500,-500,2000,2000)
+    motor.MotorGo(-500,-500,2000,2000)
     if(R < 10){
-      PWM.setMotorModel(-1500,-1500,1500,1500)
+      motor.MotorGo(-1500,-1500,1500,1500)
     }
   }else {
-    self.PWM.setMotorModel(600,600,600,600)
+    motor.MotorGo(600,600,600,600)
   }
 }
 
@@ -42,12 +45,12 @@ int main(void){
       return -1;
   }
 	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-  self.PWM=Motor()
-  self.pwm_S=Servo()
+  Motor motor=Motor()
+  Servo servo=Servo()
   int L = 300,M = 300,R = 300;
   while(True){
     for(int i = 30 ; i < 151 ; i = i+60){
-      self.pwm_S.setServoPwm('0',i);
+      servo.setServo('0',i);
       delay(0.2);
       if(i==30){
         L = self.get_distance();
@@ -57,8 +60,8 @@ int main(void){
         R = self.get_distance();
       }
     }
-    self.pwm_S.setServoPwm('0',90)
-    self.run_motor(L,M,R)
+    servo.setServo('0',90)
+    run_motor(motor,L,M,R)
   }
 	return 0;
 }
