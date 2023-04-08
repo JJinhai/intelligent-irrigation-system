@@ -13,11 +13,13 @@ int main(void){
     printf("please check your setup\n");
     return -1;
   }
+  int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+
   Ultrasonic u = Ultrasonic();
   int d = u.getDistance();
   printf("Main the distance is %d cm",d);
 
-  Motor m1 = Motor();
+  Motor m1 = Motor(fd);
   m1.stop_car();
   delay(1000);
   m1.MotorGo(1000,1000,1000,1000);
