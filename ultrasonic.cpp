@@ -13,25 +13,27 @@
 //   public:
 
 // }
+int pulseIn(){
+  int t0 = time(0);
+  while(digitalRead(Echo_pin) != HIGH){
+    if((time(0) - t0) > TimeOut*0.000001){
+      return 0;
+    }
+  }
+  t0 = time(0);
+  while(digitalRead(Echo_pin) == HIGH){
+    if((time(0) - t0) > TimeOut*0.000001){
+      return 0;
+    }
+  }
+  int pulseTime = (time(0) - t0)*1000000;
+  return pulseTime;
+}
 
 int main(void){
   pinMode(Trigger_pin,OUTPUT);
   pinMode(Echo_pin,INPUT);
-
-  int pulseIn(){
-    int t0 = time();
-    while(digitalRead(Echo_pin) != HIGH):
-        if((time() - t0) > TimeOut*0.000001):
-            return 0;
-    t0 = time.time();
-    while(digitalRead(Echo_pin) == HIGH):
-        if((time() - t0) > TimeOut*0.000001):
-            return 0;
-    int pulseTime = (time.time() - t0)*1000000;
-    return pulseTime;
-  }
-
-  int distance_cm[] = { 0, 0, 0, 0, 0 }; // 待排序的数组
+  int distance_cm[5] = { 0, 0, 0, 0, 0 }; // 待排序的数组
 
   for(int i=0 ;i<5;i++){
     digitalWrite(Trigger_pin,HIGH);      // make trigger_pin output 10us HIGH level 
@@ -41,6 +43,6 @@ int main(void){
     distance_cm[i] = pulseTime;
   }
   std::sort(distance_cm, distance_cm + 5); // 调用std::sort函数对数组进行排序
-  printf(distance_cm[2]);
+  printf("the distance is %d cm",distance_cm[2]);
   return 0;
 }
