@@ -31,10 +31,17 @@
 #define SPEED 2000
 
 
-
-
-
-void left_Upper_Wheel(int fd,int speed){
+class Motor{
+  public:
+   int fd;
+   Motor(){
+    fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+    if (fd < 0){
+      printf("Error in setup\n");
+      return fd;
+    }
+   }
+  void left_Upper_Wheel(int fd,int speed){
     if(speed>0){
       pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
     }
@@ -45,55 +52,57 @@ void left_Upper_Wheel(int fd,int speed){
       pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
       pca9685PWMWrite(fd, Motor1_B, 0, 4095-speed);
     }
+  }
+
+  void left_Lower_Wheel(int fd,int speed){
+      if(speed>0){
+        pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
+      }
+      else if(speed<0){
+        pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+      }	 
+      else{
+        pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+      }
+  }
+
+  void right_Lower_Wheel(int fd,int speed){
+      if(speed>0){
+        pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
+      }
+      else if(speed<0){
+        pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+      }	 
+      else{
+        pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+      }
+  }
+
+  void right_Upper_Wheel(int fd,int speed){
+      if(speed>0){
+        pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
+      }
+      else if(speed<0){
+        pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+      }	 
+      else{
+        pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+      }
+  }
+
+  void MotorGo(int speed1,int speed2,int speed3,int speed4){
+    left_Upper_Wheel(fd,speed1);
+    left_Lower_Wheel(fd,speed2);
+    right_Upper_Wheel(fd,speed3);
+    right_Lower_Wheel(fd,speed4);
+  }
 }
 
-void left_Lower_Wheel(int fd,int speed){
-    if(speed>0){
-      pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
-    }
-    else if(speed<0){
-      pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
-    }	 
-    else{
-      pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
-      pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
-    }
-}
-
-void right_Lower_Wheel(int fd,int speed){
-    if(speed>0){
-      pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
-    }
-    else if(speed<0){
-      pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
-    }	 
-    else{
-      pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
-      pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
-    }
-}
-
-void right_Upper_Wheel(int fd,int speed){
-    if(speed>0){
-      pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
-    }
-    else if(speed<0){
-      pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
-    }	 
-    else{
-      pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
-      pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
-    }
-}
 
 
-void MotorGo(int fd,int speed1,int speed2,int speed3,int speed4){
-  left_Upper_Wheel(fd,speed1);
-  left_Lower_Wheel(fd,speed2);
-  right_Upper_Wheel(fd,speed3);
-  right_Lower_Wheel(fd,speed4);
-
-}
      
 
 // initialize  IN1,IN2,IN3,IN4 
@@ -132,18 +141,13 @@ int main(void)
 	setup();
 
 	// Setup with pinbase 300 and i2c location 0x40
-	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-	if (fd < 0)
-	{
-		printf("Error in setup\n");
-		return fd;
-	}
+	
   printf("clear state");
   stop_car(fd);
 	delay(1000);
   printf("ready to go");
-
-	MotorGo(fd,1000,1000,1000,1000);
+  Motor m1 = Motor();
+	m1.MotorGo(fd,1000,1000,1000,1000);
 	delay(4000);
 	
 	stop_car(fd);
