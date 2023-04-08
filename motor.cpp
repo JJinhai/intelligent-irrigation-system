@@ -34,8 +34,8 @@
 class Motor{
   public:
    int fd;
-   Motor(fd){
-    fd = fd || pca9685Setup(PIN_BASE, 0x40, HERTZ);
+   Motor(int fdReference){
+    fd = fdReference || pca9685Setup(PIN_BASE, 0x40, HERTZ);
     if (fd < 0){
       printf("Error in setup\n");
 
