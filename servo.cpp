@@ -29,7 +29,16 @@ int main(void){
       return -1;
   }
 	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
+  setServo(fd,0,0);
+  delay(500);
   setServo(fd,0,90);
+  delay(500);
+  setServo(fd,0,180);
+  delay(500);
+  setServo(fd,1,0);
+  delay(500);
   setServo(fd,1,90);
+  delay(500);
+  setServo(fd,1,180);
 	return 0;
 }

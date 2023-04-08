@@ -30,6 +30,22 @@
 #define IN4 3  //right motor IN4 connect to wPi pin# 3 (Physical 15,BCM GPIO 22)
 #define SPEED 2000
 
+
+
+
+
+void left_Upper_Wheel(duty):
+    if duty>0:
+        self.pwm.setMotorPwm(0,0)
+        self.pwm.setMotorPwm(1,duty)
+    elif duty<0:
+        self.pwm.setMotorPwm(1,0)
+        self.pwm.setMotorPwm(0,abs(duty))
+    else:
+        self.pwm.setMotorPwm(0,4095)
+        self.pwm.setMotorPwm(1,4095)
+
+
 // initialize  IN1,IN2,IN3,IN4 
 void setup(){
  pinMode(IN1,OUTPUT);
@@ -41,46 +57,6 @@ void setup(){
  digitalWrite(IN3,LOW);
  digitalWrite(IN4,LOW);
 }
-// void go_back(int fd,int speed){
-//     digitalWrite(IN1,HIGH);
-//     digitalWrite(IN2,LOW);
-//     digitalWrite(IN3,HIGH);
-//     digitalWrite(IN4,LOW); 
-//     pca9685PWMWrite(fd, ENA, 0, speed);
-//     pca9685PWMWrite(fd, ENB, 0, speed);
-// }
-// void go_advance(int fd,int speed){
-//     digitalWrite(IN1,LOW);
-//     digitalWrite(IN2,HIGH);
-//     digitalWrite(IN3,LOW);
-//     digitalWrite(IN4,HIGH); 
-//     pca9685PWMWrite(fd, ENA, 0, speed);
-//     pca9685PWMWrite(fd, ENB, 0, speed);
-// }
-// void go_left(int fd,int speed){
-//     digitalWrite(IN1,HIGH);
-//     digitalWrite(IN2,LOW);
-//     digitalWrite(IN3,LOW);
-//     digitalWrite(IN4,HIGH); 
-//     pca9685PWMWrite(fd, ENA, 0, speed);
-//     pca9685PWMWrite(fd, ENB, 0, speed);
-// }
-// void go_right(int fd,int speed){
-//     digitalWrite(IN1,LOW);
-//     digitalWrite(IN2,HIGH);
-//     digitalWrite(IN3,HIGH);
-//     digitalWrite(IN4,LOW); 
-//     pca9685PWMWrite(fd, ENA, 0, speed);
-//     pca9685PWMWrite(fd, ENB, 0, speed);
-// }
-// void stop_car(int fd){
-//     digitalWrite(IN1,LOW);
-//     digitalWrite(IN2,LOW);
-//     digitalWrite(IN3,LOW);
-//     digitalWrite(IN4,LOW); 
-//     pca9685PWMWrite(fd, ENA, 0, 0);
-//     pca9685PWMWrite(fd, ENB, 0, 0);
-// }
 
 void stop_car(int fd){
   pca9685PWMWrite(fd, 0, 0, 4095);
