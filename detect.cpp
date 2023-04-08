@@ -14,7 +14,7 @@
 void run_motor(Motor motor,int L,int M,int R){
   if (L < 30 && M < 30 && R <30){
     motor.MotorGo(-1450,-1450,-1450,-1450);
-    dealy(0.1);
+    delay(0.1);
     if(L < R){
       motor.MotorGo(1450,1450,-1450,-1450);
     }else{
@@ -46,26 +46,26 @@ void run_motor(Motor motor,int L,int M,int R){
        return -1;
    }
  	int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
-   Motor motor=Motor();
-   Servo servo=Servo();
-   Ultrasonic u = Ultrasonic();
-   int L = 300,M = 300,R = 300;
-   int t0 = time(0);
-   while(time(0)-t0 < 60){     
-   for(int i = 30 ; i < 151 ; i = i+60){
-       servo.setServo('0',i);
-       delay(0.2);
-       if(i==30){
-         L = u.getDistance();
-       }else if(i==90){
-         M = u.getDistance();
-       }else{
-         R = u.getDistance();
-       }
-     }
-     servo.setServo('0',90);
-     run_motor(motor,L,M,R);
-   }
+  Motor motor=Motor(fd);
+  Servo servo=Servo(fd);
+  Ultrasonic u = Ultrasonic(fd);
+  int L = 300,M = 300,R = 300;
+  int t0 = time(0);
+  while(time(0)-t0 < 60){     
+  for(int i = 30 ; i < 151 ; i = i+60){
+      servo.setServo('0',i);
+      delay(0.2);
+      if(i==30){
+        L = u.getDistance();
+      }else if(i==90){
+        M = u.getDistance();
+      }else{
+        R = u.getDistance();
+      }
+    }
+    servo.setServo('0',90);
+    run_motor(motor,L,M,R);
+  }
  	return 0;
  }
 
