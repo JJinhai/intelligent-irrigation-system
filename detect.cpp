@@ -35,7 +35,7 @@ void run_motor(Motor motor,int L,int M,int R){
       motor.MotorGo(-1500,-1500,1500,1500);
     }
   }else {
-    motor.MotorGo(600,600,600,600);
+    motor.MotorGo(1200,1200,1200,1200);
   }
 };
 
@@ -54,7 +54,7 @@ int main(void){
   while(time(0)-t0 < 60){     
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo(0,i);
-      delay(1000);
+      delay(200);
       if(i==30){
         L = u.getDistance();
       }else if(i==90){
