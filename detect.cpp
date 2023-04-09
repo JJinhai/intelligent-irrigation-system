@@ -12,7 +12,7 @@
 #define HERTZ 50
 
 void run_motor(Motor motor,int L,int M,int R){
-  if (L < 30 && M < 30 && R <30){
+  if ((L < 30 && M < 30 && R <30) || (M < 30)){
     motor.MotorGo(-1450,-1450,-1450,-1450);
     delay(0.1);
     if(L < R){
