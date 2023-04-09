@@ -18,6 +18,8 @@ int main(void) {
     pinMode(WATER_PUMP_PIN, OUTPUT);  // 设置水泵控制引脚为输出模式
 
     while(1) {  // 无限循环
+        int a = digitalRead(SOIL_MOISTURE_SENSOR_PIN);
+        printf("digitalRead(SOIL_MOISTURE_SENSOR_PIN) %d\n",a);
         int soil_moisture_value = analogRead(SOIL_MOISTURE_SENSOR_PIN);  // 读取土壤湿度数值
         cout << "Soil moisture value: " << soil_moisture_value << endl;
         if(soil_moisture_value < WATERING_THRESHOLD_LOW) {  // 检查土壤湿度是否过低
