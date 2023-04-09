@@ -46,11 +46,11 @@ class Motor{
       pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
     }
     else if(speed<0){
-      pca9685PWMWrite(fd, Motor1_B, 0, 4095-speed);
-    }	 
+      pca9685PWMWrite(fd, Motor1_B, 0, 4095-abs(speed));
+    }
     else{
-      pca9685PWMWrite(fd, Motor1_F, 0, 4095-speed);
-      pca9685PWMWrite(fd, Motor1_B, 0, 4095-speed);
+      pca9685PWMWrite(fd, Motor1_F, 0, 4095);
+      pca9685PWMWrite(fd, Motor1_B, 0, 4095);
     }
   }
 
@@ -59,11 +59,11 @@ class Motor{
         pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
       }
       else if(speed<0){
-        pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor2_B, 0, 4095-abs(speed));
       }	 
       else{
-        pca9685PWMWrite(fd, Motor2_F, 0, 4095-speed);
-        pca9685PWMWrite(fd, Motor2_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor2_F, 0, 4095);
+        pca9685PWMWrite(fd, Motor2_B, 0, 4095);
       }
   }
 
@@ -72,11 +72,11 @@ class Motor{
         pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
       }
       else if(speed<0){
-        pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor3_B, 0, 4095-abs(speed));
       }	 
       else{
-        pca9685PWMWrite(fd, Motor3_F, 0, 4095-speed);
-        pca9685PWMWrite(fd, Motor3_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor3_F, 0, 4095);
+        pca9685PWMWrite(fd, Motor3_B, 0, 4095);
       }
   }
 
@@ -85,11 +85,11 @@ class Motor{
         pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
       }
       else if(speed<0){
-        pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor4_B, 0, 4095-abs(speed));
       }	 
       else{
-        pca9685PWMWrite(fd, Motor4_F, 0, 4095-speed);
-        pca9685PWMWrite(fd, Motor4_B, 0, 4095-speed);
+        pca9685PWMWrite(fd, Motor4_F, 0, 4095);
+        pca9685PWMWrite(fd, Motor4_B, 0, 4095);
       }
   }
 
@@ -113,7 +113,6 @@ class Motor{
     pca9685PWMWrite(fd, 7, 0, 4095);
     delay(100);
   }
-
 };
 
 
