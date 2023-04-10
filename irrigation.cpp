@@ -4,7 +4,7 @@
 using namespace std;
 
 const int SOIL_MOISTURE_SENSOR_PIN = 29;  // 管脚40，BCM编码为21
-const int WATER_PUMP_PIN = 22;  // 管脚31，BCM编码为22
+const int WATER_PUMP_PIN = 4;  // 管脚31，BCM编码为22
 const int WATERING_THRESHOLD_LOW = 400;  // 浇水阈值下限
 const int WATERING_THRESHOLD_HIGH = 650;  // 浇水阈值上限
 
