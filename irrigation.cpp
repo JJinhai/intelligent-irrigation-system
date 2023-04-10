@@ -23,12 +23,14 @@ int main(void) {
         int soil_moisture_value = analogRead(SOIL_MOISTURE_SENSOR_PIN);  // 读取土壤湿度数值
         cout << "Soil moisture value: " << soil_moisture_value << endl;
         if(soil_moisture_digital_value == HIGH) {  // 检查土壤湿度是否过低 soil_moisture_value < WATERING_THRESHOLD_LOW
-            cout << "Soil moisture too low, please water the plant." << endl;
-            digitalWrite(WATER_PUMP_PIN, LOW);  // 开启水泵
+          cout << "Soil moisture too low, please water the plant." << endl;
+          digitalWrite(WATER_PUMP_PIN, LOW);  // 开启水泵
         }
-        else if(soil_moisture_digital_value > LOW) {  // 检查土壤湿度是否过高 soil_moisture_value > WATERING_THRESHOLD_HIGH
-            cout << "Soil moisture is moderate, stop watering the plant." << endl;
-            digitalWrite(WATER_PUMP_PIN, HIGH);  // 关闭水泵
+        else if(soil_moisture_digital_value == LOW) {  // 检查土壤湿度是否过高 soil_moisture_value > WATERING_THRESHOLD_HIGH
+          cout << "Soil moisture is moderate, stop watering the plant." << endl;
+          digitalWrite(WATER_PUMP_PIN, HIGH);  // 关闭水泵
+        }else{
+          digitalWrite(WATER_PUMP_PIN, HIGH);  // 关闭水泵
         }
         delay(1000);  // 延迟1秒钟
     }
