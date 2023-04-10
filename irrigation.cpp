@@ -1,5 +1,6 @@
 #include <iostream>
 #include <wiringPi.h>
+#include <thread>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ class Irrigation{
           }
           delay(1000);  // 延迟1秒钟
         }
-      })
+      });
    }
    void end(){
     isRunning = false;
