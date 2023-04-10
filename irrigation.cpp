@@ -12,13 +12,15 @@ const int WATERING_THRESHOLD_HIGH = 650;  // 浇水阈值上限
 class Irrigation{
   public:
     bool isRunning = false;
+    std::thread loopThread; // 循环所在的线程
     Irrigation(){
       pinMode(SOIL_MOISTURE_SENSOR_PIN, INPUT);  // 设置土壤湿度检测引脚为输入模式
       pinMode(WATER_PUMP_PIN, OUTPUT);  // 设置水泵控制引脚为输出模式
     }
     void start(){
       isRunning = true;
-      while(isRunning) {  // 无限循环
+      loopThread = std::thread([this]() {
+        while(isRunning) {  // 无限循环
           int soil_moisture_digital_value = digitalRead(SOIL_MOISTURE_SENSOR_PIN);
           printf("digitalRead(SOIL_MOISTURE_SENSOR_PIN) %d\n",soil_moisture_digital_value);
           int soil_moisture_value = analogRead(SOIL_MOISTURE_SENSOR_PIN);  // 读取土壤湿度数值
@@ -34,12 +36,14 @@ class Irrigation{
             digitalWrite(WATER_PUMP_PIN, HIGH);  // 关闭水泵
           }
           delay(1000);  // 延迟1秒钟
-      }
+        }
+      })
    }
    void end(){
     isRunning = false;
+    loopThread.join();
    }
-}
+};
 
 int main(void) {
     if(wiringPiSetup() == -1) {  // 初始化wiringPi库
