@@ -43,6 +43,7 @@ class Irrigation{
    void end(){
     isRunning = false;
     loopThread.join();
+    digitalWrite(WATER_PUMP_PIN, HIGH);  // close bump
    }
 };
 
