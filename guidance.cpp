@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include "motor.cpp"
 
 using namespace std;
 const float K = 30;
@@ -13,15 +14,15 @@ struct Point {
     float x;
     float y;
 };
-void go_ahead(Point point1,Point point2){
+void go_ahead(int fd, Point point1,Point point2){
   float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
   float t = distance / K;
-  Motor m1 = Motor();
+  Motor m1 = Motor(fd);
 	m1.MotorGo(1000,1000,1000,1000,t*1000);
   cout<<  "go ahead time" << t << endl;
 }
 
-float steer(Point point1,Point point2,Point point3){
+float steer(int fd, Point point1,Point point2,Point point3){
   float tanValueFinal = (point3.y - point2.y)/(point3.x - point2.x);
   float angleFinal = atan(tanValueFinal);
   float tanValueInit;
@@ -37,11 +38,11 @@ float steer(Point point1,Point point2,Point point3){
   float angle = angleFinal - angleInit;
   float t = abs(angle) / K_angle;
   if(angle < 0){
-    Motor m1 = Motor();
+    Motor m1 = Motor(fd);
     m1.MotorGo(1000,1000,-1000,-1000,t*1000);
     cout<<  "right time" << t << endl;
   }else{
-    Motor m1 = Motor();
+    Motor m1 = Motor(fd);
     m1.MotorGo(-1000,-1000,1000,1000,t*1000);
     cout<<  "left time" << t << endl;
   }
@@ -49,6 +50,12 @@ float steer(Point point1,Point point2,Point point3){
 
 int main(void)
 {
+    if(wiringPiSetup()==-1){
+      printf("setup wiringPi failed!\n");
+      printf("please check your setup\n");
+      return -1;
+    }
+    int fd = pca9685Setup(300, 0x40, 50);
     //// Define the artificial potential field parameters
     // Points of attraction
     int xa = 700;
@@ -208,8 +215,8 @@ int main(void)
       point3.y = element3_y;
 
       cout << "position:" << point3.x << " " << point3.y << endl;
-      go_ahead(point2,point3);
-      steer(point1,point2,point3);
+      go_ahead(fd,point2,point3);
+      steer(fd,point1,point2,point3);
     }
     return 0;
 }
