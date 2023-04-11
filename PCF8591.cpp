@@ -67,6 +67,4 @@ float AD_work(unsigned char channel)
 	AD_val = (AD_val * POWER)/ 255 ; //AD的参考电压是单片机上的5v，所以乘5即为实际电压值
 	return AD_val;
 }
-————————————————
-版权声明：本文为CSDN博主「唐维康」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/taw19960426/article/details/108606990
+
