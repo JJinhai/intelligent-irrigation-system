@@ -43,6 +43,7 @@ int main(void)
     float Frc = []; 
     float Fdc = [];
     float Fc = [];
+    
     while(!terminate)
     {
         //// Check if reached destination
