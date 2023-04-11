@@ -1,0 +1,82 @@
+%% Define the artificial potential field parameters
+% Points of attraction
+xa = 70;
+ya = 50;
+% Location of obstacles
+nobs = 5;
+xo = [20 30 35 50 65];
+yo = [13 25 35 38 45];
+% Size of obstacles (rho_0)
+rho_0 = [7 3 6 4 4];
+% Constants.
+Ka = 1; 
+Kv = 50; 
+Kr = [500 250 400 300 300];
+mass = 5;
+%% Integration step.
+% initial conditions
+x0 = 5; y0 = 5;
+% Initialise simulation parameters
+x = x0; y = y0;
+vx = 0; vy = 0;
+terminate = false;
+t = 0;
+dt = 0.01;
+% Store variables for later assessment
+traj = [];
+Fac = []; 
+Frc = []; 
+Fdc = [];
+Fc = [];
+while(~terminate)
+    %% Check if reached destination
+    rho = sqrt((xa-x)^2+(ya-y)^2);
+    if(rho < 0.1)
+        terminate = true;
+    end
+    %
+    %% Calculate the conservative forces
+    % Attractive force (Fa)
+    Fa = zeros(2,1);
+
+    Fa(1,1)=-Ka*(x-xa);
+    Fa(2,1)=-Ka*(y-ya);
+
+    Fac = [Fac Fa];
+    % Repulsive force (Fr)
+    Fr = zeros(2,1);
+
+    for idx = 1:nobs
+        rho_r=sqrt((xo(idx)-x)^2+(yo(idx)-y)^2)
+        if rho_r < rho_0(idx)
+            Fr(1,1)=Fr(1,1)-Kr(1,idx)*(rho_r-rho_0(1,idx))*(x-xo(1,idx))/rho_r
+            Fr(2,1)=Fr(2,1)-Kr(1,idx)*(rho_r-rho_0(1,idx))*(y-yo(1,idx))/rho_r
+        end
+    end
+        
+   
+
+    Frc = [Frc Fr];
+    % Damping force (Fd)
+    Fd = zeros(2,1);
+
+    Fd(1,1)=-Kv*vx
+    Fd(2,1)=-Kv*vy
+
+    Fdc = [Fdc Fd];
+    % Total force (F)
+
+    F(1,1)=Fa(1,1)+Fr(1,1)+Fd(1,1);
+    F(2,1)=Fa(2,1)+Fr(2,1)+Fd(2,1);
+
+    Fc = [Fc F];
+    % Velocity and Position (vx, vy, x, y) through integrating the equations
+
+    vx=vx+dt*F(1,1)/mass;
+    vy=vy+dt*F(2,1)/mass;
+    x=x+vx*dt;
+    y=y+vy*dt;
+    t=t+dt;
+
+    traj = [traj [x;y]]; %plot the trajectory
+end
