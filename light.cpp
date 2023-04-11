@@ -18,12 +18,13 @@
 void ShowTime();
 float AD_work(unsigned char channel);
 
-class Light(channel){
+class Light{
   public:
     bool isLighting;
-    void ADC(){
+    std::thread loopThread;
+    Light(){
       pcf8591Setup(BASE, Address);
-      isLighting = false
+      isLighting = false;
     }
     float AD_work(unsigned char channel){
       float AD_val = 0; //定义处理后的数值AD_val为浮点数
@@ -35,8 +36,7 @@ class Light(channel){
       return AD_val;
     }
     //显示系统时间
-    void ShowTime()
-    {
+    void ShowTime(){
       time_t t;
       struct tm *p;
       int hour = 0, min = 0, sec = 0;
@@ -66,7 +66,8 @@ class Light(channel){
       isLighting = false;
       loopThread.join();
     }
-}
+};
+
 int main(void)
 {
   if(wiringPiSetup()==-1){

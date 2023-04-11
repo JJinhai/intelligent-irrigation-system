@@ -2,24 +2,63 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
-
-
+const float K = 30;
+const float K_angle = 1;
 #define nobs 5
+
+struct Point {
+    float x;
+    float y;
+};
+void go_ahead(Point point1,Point point2){
+  float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
+  float t = distance / K;
+  Motor m1 = Motor();
+	m1.MotorGo(1000,1000,1000,1000,t*1000);
+  cout<<  "go ahead time" << t << endl;
+}
+
+float steer(Point point1,Point point2,Point point3){
+  float tanValueFinal = (point3.y - point2.y)/(point3.x - point2.x);
+  float angleFinal = atan(tanValueFinal);
+  float tanValueInit;
+  float angleInit;
+  if(point1.x == -1){ // it is the init state
+    tanValueInit = 0;
+    angleInit = M_PI/2;
+  }else{
+    tanValueInit = (point2.y - point1.y)/(point2.x - point1.x);
+    angleInit = atan(tanValueInit);
+  }
+
+  float angle = angleFinal - angleInit;
+  float t = abs(angle) / K_angle;
+  if(angle < 0){
+    Motor m1 = Motor();
+    m1.MotorGo(1000,1000,-1000,-1000,t*1000);
+    cout<<  "right time" << t << endl;
+  }else{
+    Motor m1 = Motor();
+    m1.MotorGo(-1000,-1000,1000,1000,t*1000);
+    cout<<  "left time" << t << endl;
+  }
+}
 
 int main(void)
 {
     //// Define the artificial potential field parameters
     // Points of attraction
-    int xa = 70;
-    int ya = 50;
+    int xa = 700;
+    int ya = 500;
 
-    int xo[nobs] = { 20,30,35,50,65 };
-    int yo[nobs] = { 13,25,35,38,45 };
+    int xo[nobs] = { 200,300,350,500,650 };
+    int yo[nobs] = { 130,250,350,380,450 };
     
     // Size of obstacles (rho_0)
-    int rho_0[nobs] = {7,3,6,4,4};
+    int rho_0[nobs] = {70,30,60,40,40};
 
     // Constants.
     int Ka = 1; 
@@ -39,7 +78,7 @@ int main(void)
     float vy = 0;
     bool terminate = false;
     float t = 0;
-    float dt = 0.01;
+    float dt = 0.1;
 
     // Store variables for later assessment
     std::vector<std::vector<float> > traj;
@@ -53,7 +92,7 @@ int main(void)
         //// Check if reached destination
         float rho = sqrt(pow((xa-x),2)+pow((ya-y),2));
 
-        if(rho < 0.1)
+        if(rho < 1)
         {
             terminate = true;
         }
@@ -118,13 +157,59 @@ int main(void)
         }
     }
 
-    std::cout << "traj:\n";
-    for (const auto& row : traj) {
-        for (const auto& element : row) {
-            std::cout << element << " ";
-        }
-        std::cout << std::endl;
-    }
+    // std::cout << "traj:\n";
+    // for (size_t i = 0; i < traj[0].size(); ++i) {
+    //   const auto& element = traj[0][i];
+    //   const auto& element2 = traj[1][i];
+    //   if(i%1000 == 0){
+    //     std::cout << element << " ";
+    //     std::cout << element2 << " " << endl;
+    //   }
+    // }
 
+    std::vector<std::vector<float> > path;
+    for (size_t i = 0; i < traj[0].size(); ++i) {
+      if(i%100 == 0){
+        auto& x = traj[0][i];
+        auto& y = traj[1][i];
+        std::vector<float> new_column = {x, y};
+        if( path.size() == 0){
+          path = {{x},{y}};
+        }else{
+          for (int i = 0; i < path.size(); i++) {
+            path[i].push_back(new_column[i]);
+          }
+        }
+      }
+    }
+    std::cout << "path:\n";
+    for (size_t i = 1; i < path[0].size(); i++) {
+      Point point1 = Point();
+      if( i >= 2){
+        const auto& element1_x = path[0][i-2];
+        const auto& element1_y = path[1][i-2];
+        point1.x = element1_x;
+        point1.y = element1_y;
+      }else{
+        point1.x = -1;
+        point1.y = -1;
+      }
+
+      const auto& element2_x = path[0][i-1];
+      const auto& element2_y = path[1][i-1];
+      Point point2 = Point();
+      point2.x = element2_x;
+      point2.y = element2_y;
+
+      const auto& element3_x = path[0][i];
+      const auto& element3_y = path[1][i];
+      Point point3 = Point();
+      point3.x = element3_x;
+      point3.y = element3_y;
+
+      cout << "position:" << point3.x << " " << point3.y << endl;
+      go_ahead(point2,point3);
+      steer(point1,point2,point3);
+    }
     return 0;
 }
