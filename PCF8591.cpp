@@ -30,7 +30,7 @@ int main(void)
 	float AD_val_right;
 	while (1){
 		AD_val_left = AD_work(A0);//读取A0端口的电压值
-    AD_val_right = AD_work(A0);//读取A0端口的电压值
+    AD_val_right = AD_work(A1);//读取A1端口的电压值
 		ShowTime(); //打印当前时间
 		printf("left value: %fmV\n", AD_val_left); //打印A0引脚的输入电压
     printf("right value: %fmV\n", AD_val_right); //打印A0引脚的输入电压
@@ -54,7 +54,7 @@ void ShowTime()
 
 float AD_work(unsigned char channel)
 {
-	float AD_val; //定义处理后的数值AD_val为浮点数
+	float AD_val = 0; //定义处理后的数值AD_val为浮点数
 	unsigned char i;
 	for (i = 0; i < 10; i++) 
 		AD_val += analogRead(channel); //转换10次求平均值(提高精度)
