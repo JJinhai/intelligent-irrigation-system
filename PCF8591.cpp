@@ -10,8 +10,6 @@
 #define BASE 0x40
 #define A0 0x40
 #define A1 0x41
-#define A2 0x42
-#define A3 0x43
 
 //供电(mV)
 #define POWER 5000
@@ -28,17 +26,14 @@ int main(void)
 	//设置pcf8591的器件地址
 	pcf8591Setup(BASE, Address);
 
-	float AD_val;
-
-	while (1)
-	{
-		AD_val=AD_work(A0);//读取A0端口的电压值
-		
+	float AD_val_left;
+	float AD_val_right;
+	while (1){
+		AD_val_left = AD_work(A0);//读取A0端口的电压值
+    AD_val_right = AD_work(A0);//读取A0端口的电压值
 		ShowTime(); //打印当前时间
-		
-		printf("A0 value: %fmV\n", AD_val); //打印A0引脚的输入电压
-		//printf("asgydasg");
-		
+		printf("left value: %fmV\n", AD_val_left); //打印A0引脚的输入电压
+    printf("right value: %fmV\n", AD_val_right); //打印A0引脚的输入电压
 		delay(100);
 	}
 }
