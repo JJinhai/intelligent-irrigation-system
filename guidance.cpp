@@ -48,14 +48,16 @@ void steer(int fd, Point point1,Point point2,Point point3){
   }
 };
 
-int main(void)
-{
-    if(wiringPiSetup()==-1){
-      printf("setup wiringPi failed!\n");
-      printf("please check your setup\n");
-      return -1;
+class Guidance{
+  public:
+   int fd;
+   Guidance(int fdReference){
+    fd = fdReference; // pca9685Setup(PIN_BASE, 0x40, HERTZ)
+    if (fd < 0){
+      printf("Error in setup\n");
     }
-    int fd = pca9685Setup(300, 0x40, 50);
+   }
+   void run(){
     //// Define the artificial potential field parameters
     // Points of attraction
     int xa = 700;
@@ -218,5 +220,19 @@ int main(void)
       go_ahead(fd,point2,point3);
       steer(fd,point1,point2,point3);
     }
+    
+   }
+}
+
+int main(void)
+{
+    if(wiringPiSetup()==-1){
+      printf("setup wiringPi failed!\n");
+      printf("please check your setup\n");
+      return -1;
+    }
+    int fd = pca9685Setup(300, 0x40, 50);
+    Guidance guidance1 = Guidance(fd);
+    guidance1.run()
     return 0;
 }
