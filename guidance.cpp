@@ -22,7 +22,7 @@ void go_ahead(int fd, Point point1,Point point2){
   cout<<  "go ahead time" << t << endl;
 }
 
-void steer(int fd, Point point1,Point point2,Point point3){
+float steer(int fd, Point point1,Point point2,Point point3){
   float tanValueFinal = (point3.y - point2.y)/(point3.x - point2.x);
   float angleFinal = atan(tanValueFinal);
   float tanValueInit;
@@ -46,22 +46,42 @@ void steer(int fd, Point point1,Point point2,Point point3){
     m1.MotorGo(-1000,-1000,1000,1000,t*1000);
     cout<<  "left time" << t << endl;
   }
+  return angle;
 };
 
 class Guidance{
   public:
    int fd;
+    Point start;
+    Point end;
+    float steerDegree = 0;
    Guidance(int fdReference){
     fd = fdReference; // pca9685Setup(PIN_BASE, 0x40, HERTZ)
     if (fd < 0){
       printf("Error in setup\n");
     }
+    start.x = 5;
+    start.y = 5;
+    end.x = 700;
+    end.y = 500;
    }
-   void run(){
+   void go_to_garden(){
+    run(start,end,true)
+   }
+   void back_home(){
+    float angle = M_Pi - steerDegree;
+    float t = abs(angle) / K_angle;
+    Motor m1 = Motor(fd);
+    m1.MotorGo(-1000,-1000,1000,1000,t*1000);
+    
+    steerDegree = 0;
+    run(end,start,false)
+   }
+   void run(Point start,Point end, bool isAhead){
     //// Define the artificial potential field parameters
     // Points of attraction
-    int xa = 700;
-    int ya = 500;
+    int xa = end.x;
+    int ya = end.y;
 
     int xo[nobs] = { 200,300,350,500,650 };
     int yo[nobs] = { 130,250,350,380,450 };
@@ -77,8 +97,8 @@ class Guidance{
 
     //// Integration step.
     // initial conditions
-    float x0 = 5; 
-    float y0 = 5;
+    float x0 = start.x; 
+    float y0 = start.y;
 
     // Initialise simulation parameters
     float x = x0;
@@ -218,11 +238,14 @@ class Guidance{
 
       cout << "position:" << point3.x << " " << point3.y << endl;
       go_ahead(fd,point2,point3);
-      steer(fd,point1,point2,point3);
+      float d0 = steer(fd,point1,point2,point3);
+      if(isAhead){
+        steerDegree += d0;
+      }
     }
     
-   }
-}
+  }
+};
 
 int main(void)
 {
@@ -233,6 +256,6 @@ int main(void)
     }
     int fd = pca9685Setup(300, 0x40, 50);
     Guidance guidance1 = Guidance(fd);
-    guidance1.run()
+    guidance1.run();
     return 0;
 }
