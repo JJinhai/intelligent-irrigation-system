@@ -8,10 +8,7 @@ const int SOIL_MOISTURE_SENSOR_PIN = 29;  // Pin 40, BCM code 21
 const int WATER_PUMP_PIN = 22;  // Pin 31, BCM code 22
 const int WATERING_THRESHOLD_LOW = 400;  // Lower watering threshold
 const int WATERING_THRESHOLD_HIGH = 650;  // Watering threshold limit
-const int SOIL_MOISTURE_SENSOR_PIN = 29;  // Pin 40, BCM code 21
-const int WATER_PUMP_PIN = 22;  // Pin 31, BCM code 22
-const int WATERING_THRESHOLD_LOW = 400;  // Lower watering threshold
-const int WATERING_THRESHOLD_HIGH = 650;  // Watering threshold limit
+
 
 
 class Irrigation{
