@@ -11,29 +11,6 @@
 #define MAX_PWM 4096
 #define HERTZ 50
 
-
-bool checkEnv(float infrared_value,float infrared_value_back,float light_left inf,float light_right){ //   std::thread loopThread = std::thread([this]() {})
-  bool isRun = true;
-  int count = 0;
-  while(isRun){ // && time(0) - t0 < 30
-    // float infrared_value = inf.getFrontValue();
-    cout<<"front infrared: "<<infrared_value<<"--";
-    // float infrared_value_back = inf.getBackValue();
-    cout<<"back infrared: "<<infrared_value_back<<"--";
-    // float light_left = l1.getLeftValue();
-    cout<<"light_left: "<<light_left<<"--";
-    // float light_right = l1.getRightValue();
-    cout<<"light_right: "<<light_right<<endl;
-    if(infrared_value == LOW || infrared_value_back == LOW || light_left > 2000 || light_right > 2000){
-      count += 1;
-    }
-    if(count >= 3){
-      isRun = false;
-      return true;
-    }
-  }
-};
-
 int main(void){
   if(wiringPiSetup()==-1){
       printf("setup wiringPi failed!\n");
@@ -49,12 +26,28 @@ int main(void){
   Guidance guidance1 = Guidance(fd);
 
   guidance1.go_to_garden();
+  bool isRun = true;
   while(1){
-    float infrared_value = inf.getFrontValue();
-    float infrared_value_back = inf.getBackValue();
-    float light_left = l1.getLeftValue();
-    float light_right = l1.getRightValue();
-    triggle = checkEnv(infrared_value,infrared_value_back,light_left,light_right);
+    int count = 0;
+    while(!triggle){ // && time(0) - t0 < 30
+      delay(1000);
+      float infrared_value = inf.getFrontValue();
+      cout<<"front infrared: "<<infrared_value<<"--";
+      float infrared_value_back = inf.getBackValue();
+      cout<<"back infrared: "<<infrared_value_back<<"--";
+      float light_left = l1.getLeftValue();
+      cout<<"light_left: "<<light_left<<"--";
+      float light_right = l1.getRightValue();
+      cout<<"light_right: "<<light_right<<endl;
+      if(infrared_value == LOW || infrared_value_back == LOW || light_left > 2000 || light_right > 2000){
+        count += 1;
+      }
+      if(count >= 3){
+        isRun = false;
+        triggle = true;
+        count = 0;
+      }
+    }
     if(triggle){
       guidance1.back_home();
       triggle = false;
