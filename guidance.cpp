@@ -22,7 +22,7 @@ void go_ahead(int fd, Point point1,Point point2){
   cout<<  "go ahead time" << t << endl;
 }
 
-float steer(int fd, Point point1,Point point2,Point point3){
+void steer(int fd, Point point1,Point point2,Point point3){
   float tanValueFinal = (point3.y - point2.y)/(point3.x - point2.x);
   float angleFinal = atan(tanValueFinal);
   float tanValueInit;
@@ -46,7 +46,7 @@ float steer(int fd, Point point1,Point point2,Point point3){
     m1.MotorGo(-1000,-1000,1000,1000,t*1000);
     cout<<  "left time" << t << endl;
   }
-}
+};
 
 int main(void)
 {
