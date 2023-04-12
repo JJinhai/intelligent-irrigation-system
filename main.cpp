@@ -25,7 +25,7 @@ int main(void){
   Light l1 = Light();
 	int t0=time(0);
   while(time(0) - t0 < 30 ){
-		float infrared_value = inf.getValue();
+		float infrared_value = inf.getFrontValue();
 		cout<<"front infrared: "<<infrared_value<<"--";
     float infrared_value_back = inf.getBackValue();
 		cout<<"back infrared: "<<infrared_value_back<<"--";

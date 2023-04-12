@@ -70,12 +70,12 @@ class Light{
     float getLeftValue(){
       float AD_val_left;
       AD_val_left = AD_work(A0);//读取A0端口的电压值
-      return AD_val_left
+      return AD_val_left;
     }
     float getRightValue(){
       float AD_val_right;
       AD_val_right = AD_work(A1);//读取A1端口的电压值
-      return AD_val_right
+      return AD_val_right;
     }
 };
 
