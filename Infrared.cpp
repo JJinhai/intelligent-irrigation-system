@@ -38,8 +38,8 @@ int main(void) {
     Infrared inf = Infrared();
 	int t0=time(0);
     while(time(0) - t0 < 10 ){
-		float infrared_vale = inf.getValue();
-		cout<<"infrared_vale: "<<infrared_value;
+		float infrared_value = inf.getValue();
+		cout<<"infrared_vale: "<<infrared_value<<endl;
 
 	}
 	
