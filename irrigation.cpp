@@ -9,7 +9,6 @@ const int WATER_PUMP_PIN = 22;  // Pin 31, BCM code 22
 const int WATERING_THRESHOLD_LOW = 400;  // Lower watering threshold
 const int WATERING_THRESHOLD_HIGH = 650;  // Watering threshold limit
 
-
 class Irrigation{
   public:
     bool isRunning = false;
