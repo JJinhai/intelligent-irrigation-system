@@ -61,6 +61,3 @@ int main(void) {
 
     return 0;
 }
-#include <iostream>
-#include <wiringPi.h>
-#include <thread>
