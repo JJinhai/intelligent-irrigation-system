@@ -37,7 +37,7 @@ class Ultrasonic{
     return pulseTime;
   }
   int getDistance(){
-    int distance_cm[5] = { 0, 0, 0, 0, 0 }; // 待排序的数组
+    int distance_cm[5] = { 0, 0, 0, 0, 0 }; // Arrays to be sorted
     for(int i=0 ;i<5;i++){
       digitalWrite(Trigger_pin,HIGH);      // make trigger_pin output 10us HIGH level 
       delay(0.00001);
@@ -45,7 +45,7 @@ class Ultrasonic{
       int pulseTime = pulseIn()* 340.0 / 2.0 / 10000.0;
       distance_cm[i] = pulseTime;
     }
-    std::sort(distance_cm, distance_cm + 5); // 调用std::sort函数对数组进行排序
+    std::sort(distance_cm, distance_cm + 5); // Calling the std::sort function to sort an array
     return distance_cm[2];
   }
 };
