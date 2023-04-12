@@ -12,6 +12,7 @@ using namespace std;
 const int Infrared_pin = 23;  // Pin33 , BCM code 13
 
 
+
 class Infrared{
 	public:
 		bool isRuning = false;
