@@ -17,10 +17,10 @@ const int Infrared_pin_back = 26;  // Pin32 , BCM code 12
 class Infrared{
 	public:
 		bool isRuning = false;
-	std::thread loopThread;
-	Infrared(){
-		pinMode(Infrared_pin, INPUT);
-	}
+    std::thread loopThread;
+    Infrared(){
+      pinMode(Infrared_pin, INPUT);
+    }
 
 	float getFrontValue(){
 		float infrared_value = digitalRead(Infrared_pin);

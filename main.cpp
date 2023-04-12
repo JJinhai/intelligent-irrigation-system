@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "motor.cpp"
-#include "servo.cpp"
-#include "ultrasonic.cpp"
 #include "light.cpp"
 #include "Infrared.cpp"
 #include "guidance.cpp"
@@ -15,17 +12,17 @@
 #define HERTZ 50
 
 
-bool checkEnv(Infrared inf,Light l1){ //   std::thread loopThread = std::thread([this]() {})
+bool checkEnv(float infrared_value,float infrared_value_back,float light_left inf,float light_right){ //   std::thread loopThread = std::thread([this]() {})
   bool isRun = true;
   int count = 0;
   while(isRun){ // && time(0) - t0 < 30
-    float infrared_value = inf.getFrontValue();
+    // float infrared_value = inf.getFrontValue();
     cout<<"front infrared: "<<infrared_value<<"--";
-    float infrared_value_back = inf.getBackValue();
+    // float infrared_value_back = inf.getBackValue();
     cout<<"back infrared: "<<infrared_value_back<<"--";
-    float light_left = l1.getLeftValue();
+    // float light_left = l1.getLeftValue();
     cout<<"light_left: "<<light_left<<"--";
-    float light_right = l1.getRightValue();
+    // float light_right = l1.getRightValue();
     cout<<"light_right: "<<light_right<<endl;
     if(infrared_value == LOW || infrared_value_back == LOW || light_left > 2000 || light_right > 2000){
       count += 1;
@@ -53,7 +50,11 @@ int main(void){
 
   guidance1.go_to_garden();
   while(1){
-    triggle = checkEnv(inf,l1);
+    float infrared_value = inf.getFrontValue();
+    float infrared_value_back = inf.getBackValue();
+    float light_left = l1.getLeftValue();
+    float light_right = l1.getRightValue();
+    triggle = checkEnv(infrared_value,infrared_value_back,light_left,light_right);
     if(triggle){
       guidance1.back_home();
       triggle = false;
