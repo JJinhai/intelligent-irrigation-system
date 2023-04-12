@@ -34,22 +34,22 @@ class Infrared{
 };
 
 
-int main(void) {
-  if(wiringPiSetup() == -1) {  // Initialising the wiringPi library
-      cout << "Failed to initialize wiringPi library." << endl;
-      return 0;
-  }
-  Infrared inf = Infrared();
-	int t0=time(0);
-  while(time(0) - t0 < 10 ){
-		float infrared_value = inf.getValue();
-		cout<<"infrared_vale of the front: "<<infrared_value<<endl;
-    float infrared_value_back = inf.getBackValue();
-		cout<<"infrared_vale of the back: "<<infrared_value_back<<endl;
-	}
+// int main(void) {
+//   if(wiringPiSetup() == -1) {  // Initialising the wiringPi library
+//       cout << "Failed to initialize wiringPi library." << endl;
+//       return 0;
+//   }
+//   Infrared inf = Infrared();
+// 	int t0=time(0);
+//   while(time(0) - t0 < 10 ){
+// 		float infrared_value = inf.getValue();
+// 		cout<<"infrared_vale of the front: "<<infrared_value<<endl;
+//     float infrared_value_back = inf.getBackValue();
+// 		cout<<"infrared_vale of the back: "<<infrared_value_back<<endl;
+// 	}
 	
-  return 0;
-}
+//   return 0;
+// }
 
 
 

@@ -66,20 +66,31 @@ class Light{
       isLighting = false;
       loopThread.join();
     }
+
+    float getLeftValue(){
+      float AD_val_left;
+      AD_val_left = AD_work(A0);//读取A0端口的电压值
+      return AD_val_left
+    }
+    float getRightValue(){
+      float AD_val_right;
+      AD_val_right = AD_work(A1);//读取A1端口的电压值
+      return AD_val_right
+    }
 };
 
-int main(void)
-{
-  if(wiringPiSetup()==-1){
-      printf("setup wiringPi failed!\n");
-      printf("please check your setup\n");
-      return -1;
-  }
-  Light l1 = Light();
-  l1.start();
-	delay(15000);
-  l1.end();
+// int main(void)
+// {
+//   if(wiringPiSetup()==-1){
+//       printf("setup wiringPi failed!\n");
+//       printf("please check your setup\n");
+//       return -1;
+//   }
+//   Light l1 = Light();
+//   l1.start();
+// 	delay(15000);
+//   l1.end();
 
-	return 0;
-}
+// 	return 0;
+// }
 

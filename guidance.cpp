@@ -254,6 +254,7 @@ int main(void)
       printf("please check your setup\n");
       return -1;
     }
+    
     int fd = pca9685Setup(300, 0x40, 50);
     Guidance guidance1 = Guidance(fd);
     guidance1.go_to_garden();
