@@ -66,16 +66,16 @@ class Guidance{
     end.y = 500;
    }
    void go_to_garden(){
-    run(start,end,true)
+    run(start,end,true);
    }
    void back_home(){
-    float angle = M_Pi - steerDegree;
+    float angle = M_PI - steerDegree;
     float t = abs(angle) / K_angle;
     Motor m1 = Motor(fd);
     m1.MotorGo(-1000,-1000,1000,1000,t*1000);
     
     steerDegree = 0;
-    run(end,start,false)
+    run(end,start,false);
    }
    void run(Point start,Point end, bool isAhead){
     //// Define the artificial potential field parameters
@@ -256,6 +256,8 @@ int main(void)
     }
     int fd = pca9685Setup(300, 0x40, 50);
     Guidance guidance1 = Guidance(fd);
-    guidance1.run();
+    guidance1.go_to_garden();
+    delay(5000);
+    guidance1.back_home();
     return 0;
 }
