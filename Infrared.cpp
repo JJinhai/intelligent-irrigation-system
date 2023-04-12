@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "guidance.cpp"
 
 
 using namespace std;
@@ -18,17 +17,17 @@ class Infrared{
 		bool isRuning = false;
 	std::thread loopThread;
 	Infrared(){
-		pinMode(INFRARED_PIN, INPUT);
+		pinMode(Infrared_pin, INPUT);
 	}
 
 	float getValue(){
 
-		float infrared_value = digitalread(Infrared_pin);
+		float infrared_value = digitalRead(Infrared_pin);
 		
 		return infrared_value;		
 	}	 
 
-}
+};
 
 
 int main(void) {
@@ -37,8 +36,8 @@ int main(void) {
         return 0;
     }
     Infrared inf = Infrared();
-	int t0=time.time();
-    while(time.time() - t0 < 10 ){
+	int t0=time(0);
+    while(time(0) - t0 < 10 ){
 		float infrared_vale = inf.getValue();
 		cout<<"infrared_vale: "<<infrared_value;
 
