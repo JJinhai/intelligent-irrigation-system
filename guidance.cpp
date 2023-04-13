@@ -8,7 +8,7 @@
 #include "avoid.cpp"
 
 using namespace std;
-const float K = 30;
+const float K = 40.8163;
 const float K_angle = 1.6534;
 #define nobs 30
 
@@ -26,9 +26,9 @@ void go_ahead(int fd, Point point1,Point point2){
   while(leftDistance > 0){
     Avoid avoid1 = Avoid(fd);
     if(leftDistance < 30){
-      m1.MotorGo(1000,1000,1000,1000, leftDistance / K*1000);
+      m1.MotorGo(2000,2000,2000,2000, leftDistance / K*1000);
     }else{
-      m1.MotorGo(1000,1000,1000,1000, diff / K*1000);
+      m1.MotorGo(2000,2000,2000,2000, diff / K*1000);
     }
     leftDistance -= diff;
     if(leftDistance >0){
