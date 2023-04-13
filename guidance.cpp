@@ -21,7 +21,7 @@ void go_ahead(int fd, Point point1,Point point2){
   float t = distance / K;
   Motor m1 = Motor(fd);
   int triggle = false;
-  void myThreadFunction() {
+  std::thread myThread([]() {
     Avoid avoid1 = Avoid(fd);
     while(!triggle){
       delay(30/K*1000);
@@ -32,8 +32,7 @@ void go_ahead(int fd, Point point1,Point point2){
         triggle = true;
       }
     }
-  }
-  std::thread myThread(myThreadFunction);
+  });
 	m1.MotorGo(1000,1000,1000,1000,distance / K*1000);
   if(triggle){
     cout<< "avoid obstacle and go on" << endl;
