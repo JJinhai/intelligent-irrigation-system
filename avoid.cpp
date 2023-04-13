@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "motor.cpp"
+// #include "motor.cpp"
 #include "servo.cpp"
 #include "ultrasonic.cpp"
 
@@ -33,7 +33,7 @@ class Avoid{
       }
     }
     void fakeMove(){
-      Motor motor=Motor(fd);
+      Motor m1 = Motor(fd);
       const float K = 30;
       const float K_angle = 1;
 
@@ -53,7 +53,7 @@ class Avoid{
       m1.MotorGo(1000,1000,1000,1000,distance/K*1000); 
       m1.MotorGo(1000,1000,-1000,-1000,steerTime*1000); // turn right
     }
-    void detect(){
+    bool detect(){
       Servo servo=Servo(fd);
       Ultrasonic u = Ultrasonic();
       int L,M,R;
@@ -76,4 +76,4 @@ class Avoid{
       }
     }
 
-}
+};

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <thread>
 #include "motor.cpp"
 #include "avoid.cpp"
 
@@ -19,8 +20,8 @@ void go_ahead(int fd, Point point1,Point point2){
   float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
   float t = distance / K;
   Motor m1 = Motor(fd);
-  int triggle = false
-  std:thread loopThread = std::thread([this]() {
+  int triggle = false;
+  void myThreadFunction() {
     Avoid avoid1 = Avoid(fd);
     while(!triggle){
       delay(30/K*1000);
@@ -31,11 +32,15 @@ void go_ahead(int fd, Point point1,Point point2){
         triggle = true;
       }
     }
-  })
+  }
+  std::thread myThread(myThreadFunction);
 	m1.MotorGo(1000,1000,1000,1000,distance / K*1000);
   if(triggle){
     cout<< "avoid obstacle and go on" << endl;
     m1.MotorGo(1000,1000,1000,1000,(distance - 120) / K*1000);
+  }else{
+    triggle = true;
+    myThread.join();
   }
   cout<<  "go ahead time" << t << endl;
 }
