@@ -10,7 +10,7 @@
 using namespace std;
 const float K = 30;
 const float K_angle = 1;
-#define nobs 5
+#define nobs 30
 
 struct Point {
     float x;
