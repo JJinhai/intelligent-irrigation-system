@@ -138,7 +138,9 @@ void setup(){
 //   wiringPiSetup();
 //  int fd = pca9685Setup(300, 0x40, 50);
 //   Motor m1 = Motor(fd);
-//   int duration = argv[1];
+//   int duration = std::atoi(argv[1]);
+//   m1.MotorGo(1000,1000,-1000,-1000,duration);
+
 //   cout << duration <<endl;
 //   m1.MotorGo(1000,1000,1000,1000,duration);
 //   m1.stop_car();
