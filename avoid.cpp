@@ -31,6 +31,7 @@ class Avoid{
           // R = u.getDistance();
         }
       }
+      servo.setServo(0,90);
     }
     void fakeMove(){
       Motor m1 = Motor(fd);
