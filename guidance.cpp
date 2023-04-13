@@ -9,7 +9,7 @@
 
 using namespace std;
 const float K = 30;
-const float K_angle = 1;
+const float K_angle = 1.6534;
 #define nobs 30
 
 struct Point {
@@ -62,11 +62,11 @@ float steer(int fd, Point point1,Point point2,Point point3){
   float t = abs(angle) / K_angle;
   if(angle < 0){
     Motor m1 = Motor(fd);
-    m1.MotorGo(1000,1000,-1000,-1000,t*1000);
+    m1.MotorGo(2000,2000,-2000,-2000,t*1000);
     cout<<  "right time" << t << endl;
   }else{
     Motor m1 = Motor(fd);
-    m1.MotorGo(-1000,-1000,1000,1000,t*1000);
+    m1.MotorGo(-2000,-2000,2000,2000,t*1000);
     cout<<  "left time" << t << endl;
   }
   return angle;
