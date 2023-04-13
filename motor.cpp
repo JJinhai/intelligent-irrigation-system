@@ -3,6 +3,8 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+using namespace std;
 
 #define PIN_BASE 300
 #define MAX_PWM 4096
