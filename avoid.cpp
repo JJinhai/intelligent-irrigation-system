@@ -36,7 +36,7 @@ class Avoid{
     void fakeMove(){
       Motor m1 = Motor(fd);
       const float K = 30;
-      const float K_angle = 1;
+      const float K_angle = 1.6534;
 
       const int distance = 60;
       float obstacleLength = 120;
@@ -44,15 +44,15 @@ class Avoid{
       float steerDegree = M_PI / 2;
       float steerTime = steerDegree / K_angle;
 
-      m1.MotorGo(1000,1000,-1000,-1000,steerTime*1000); // turn right
+      m1.MotorGo(2000,2000,-2000,-2000,steerTime*1000); // turn right
       m1.MotorGo(1000,1000,1000,1000,distance/K*1000); 
       normalDetect();
-      m1.MotorGo(-1000,-1000,1000,1000,steerTime*1000); // turn leftt
+      m1.MotorGo(-2000,-2000,2000,2000,steerTime*1000); // turn leftt
       m1.MotorGo(1000,1000,1000,1000,obstacleLength/K*1000); 
       normalDetect();
-      m1.MotorGo(-1000,-1000,1000,1000,steerTime*1000); // turn leftt
+      m1.MotorGo(-2000,-2000,2000,2000,steerTime*1000); // turn leftt
       m1.MotorGo(1000,1000,1000,1000,distance/K*1000); 
-      m1.MotorGo(1000,1000,-1000,-1000,steerTime*1000); // turn right
+      m1.MotorGo(2000,2000,-2000,-2000,steerTime*1000); // turn right
     }
     bool detect(){
       Servo servo=Servo(fd);
