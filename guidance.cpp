@@ -19,29 +19,30 @@ struct Point {
 void go_ahead(int fd, Point point1,Point point2){
   float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
   float t = distance / K;
+  float diff = 30;
+  float leftDistance = distance;
   Motor m1 = Motor(fd);
-  int triggle = false;
-  std::thread myThread([]() {
+  int triggle = true;
+  while(leftDistance > 0){
     Avoid avoid1 = Avoid(fd);
-    while(!triggle){
-      delay(30/K*1000);
+    if(leftDistance < 30){
+      m1.MotorGo(1000,1000,1000,1000, leftDistance / K*1000);
+    }else{
+      m1.MotorGo(1000,1000,1000,1000, diff / K*1000);
+    }
+    leftDistance -= diff;
+    if(leftDistance >0){
       if(avoid1.detect()){
         cout<< "obstacle front" << endl;
-        m1.stop_car();
-        avoid1.fakeMove();
-        triggle = true;
+        if(triggle){
+          avoid1.fakeMove();
+          leftDistance -= 120;
+        }
+        triggle = false;
       }
     }
-  });
-	m1.MotorGo(1000,1000,1000,1000,distance / K*1000);
-  if(triggle){
-    cout<< "avoid obstacle and go on" << endl;
-    m1.MotorGo(1000,1000,1000,1000,(distance - 120) / K*1000);
-  }else{
-    triggle = true;
-    myThread.join();
   }
-  cout<<  "go ahead time" << t << endl;
+  cout<<  "go ahead distance" << distance << endl;
 }
 
 float steer(int fd, Point point1,Point point2,Point point3){
