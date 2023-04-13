@@ -45,13 +45,13 @@ class Avoid{
       float steerTime = steerDegree / K_angle;
 
       m1.MotorGo(2000,2000,-2000,-2000,steerTime*1000); // turn right
-      m1.MotorGo(1000,1000,1000,1000,distance/K*1000); 
+      m1.MotorGo(2000,2000,2000,2000,distance/K*1000); 
       normalDetect();
       m1.MotorGo(-2000,-2000,2000,2000,steerTime*1000); // turn leftt
-      m1.MotorGo(1000,1000,1000,1000,obstacleLength/K*1000); 
+      m1.MotorGo(2000,2000,2000,2000,obstacleLength/K*1000); 
       normalDetect();
       m1.MotorGo(-2000,-2000,2000,2000,steerTime*1000); // turn leftt
-      m1.MotorGo(1000,1000,1000,1000,distance/K*1000); 
+      m1.MotorGo(2000,2000,2000,2000,distance/K*1000); 
       m1.MotorGo(2000,2000,-2000,-2000,steerTime*1000); // turn right
     }
     bool detect(){
