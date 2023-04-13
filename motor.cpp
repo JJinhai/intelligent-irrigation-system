@@ -135,10 +135,10 @@ void setup(){
 
 // int main(int argc, char* argv[])
 // {
-//   wiringPiSetup()
+//   wiringPiSetup();
 //  int fd = pca9685Setup(300, 0x40, 50);
 //   Motor m1 = Motor(fd);
-//   int duration = std::stoi(argv[1])
+//   int duration = argv[1];
 //   cout << duration <<endl;
 //   m1.MotorGo(1000,1000,1000,1000,duration);
 //   m1.stop_car();
