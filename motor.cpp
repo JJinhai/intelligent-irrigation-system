@@ -131,28 +131,14 @@ void setup(){
  digitalWrite(IN4,LOW);
 }
 
-// int main(void)
+// int main(int argc, char* argv[])
 // {
-//     if(wiringPiSetup()==-1){
-//         printf("setup wiringPi failed!\n");
-//         printf("please check your setup\n");
-//         return -1;
-//     }
-// 	setup();
-
-// 	// Setup with pinbase 300 and i2c location 0x40
-	
-//   printf("clear state");
-  
-// 	delay(1000);
-//   printf("ready to go");
-//   Motor m1 = Motor();
+//   wiringPiSetup()
+//  int fd = pca9685Setup(300, 0x40, 50);
+//   Motor m1 = Motor(fd);
+//   int duration = std::stoi(argv[1])
+//   cout << duration <<endl;
+//   m1.MotorGo(1000,1000,1000,1000,duration);
 //   m1.stop_car();
-//   delay(1000);
-// 	m1.MotorGo(1000,1000,1000,1000);
-// 	delay(2000);
-//   m1.stop_car();
-
-	
-// 	return 0;
+//   return 0;
 // }
