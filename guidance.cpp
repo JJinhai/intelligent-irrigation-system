@@ -189,7 +189,7 @@ class Guidance{
         Fr[0][0] = 0;
         Fr[1][0] = 0;
 
-        for(int i=0;i<5;i++){
+        for(int i=0;i<nobs;i++){
             float rho_r = sqrt(pow((xo[i]-x),2)+pow((yo[i]-y),2));
             if(rho_r < rho_0[i]){
                 Fr[0][0]=Fr[1][1]-Kr[i]*(rho_r-rho_0[i])*(x-xo[i])/rho_r;
