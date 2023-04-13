@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include "motor.cpp"
+#include "avoid.cpp"
 
 using namespace std;
 const float K = 30;
@@ -18,7 +19,24 @@ void go_ahead(int fd, Point point1,Point point2){
   float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
   float t = distance / K;
   Motor m1 = Motor(fd);
-	m1.MotorGo(1000,1000,1000,1000,t*1000);
+  int triggle = false
+  std:thread loopThread = std::thread([this]() {
+    Avoid avoid1 = Avoid(fd);
+    while(!triggle){
+      delay(30/K*1000);
+      if(avoid1.detect()){
+        cout<< "obstacle front" << endl;
+        m1.stop_car();
+        avoid1.fakeMove();
+        triggle = true;
+      }
+    }
+  })
+	m1.MotorGo(1000,1000,1000,1000,distance / K*1000);
+  if(triggle){
+    cout<< "avoid obstacle and go on" << endl;
+    m1.MotorGo(1000,1000,1000,1000,(distance - 120) / K*1000);
+  }
   cout<<  "go ahead time" << t << endl;
 }
 
