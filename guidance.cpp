@@ -8,8 +8,8 @@
 #include "avoid.cpp"
 
 using namespace std;
-const float K = 40.8163;
-const float K_angle = 1.6534;
+const float K = 43.4783;
+const float K_angle = 1.1636;
 #define nobs 30 // the number of the obstacle
 
 struct Point {
