@@ -35,8 +35,8 @@ class Avoid{
     }
     void fakeMove(){
       Motor m1 = Motor(fd);
-      const float K = 30;
-      const float K_angle = 1.6534;
+      const float K = 43.4783;
+      const float K_angle = 1.1636;
 
       const int distance = 60;
       float obstacleLength = 120;
