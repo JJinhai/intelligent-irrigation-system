@@ -46,16 +46,16 @@ class Irrigation{
    }
 };
 
-int main(void) {
-    if(wiringPiSetup() == -1) {  // Initialising the wiringPi library
-        cout << "Failed to initialize wiringPi library." << endl;
-        return 0;
-    }
+// int main(void) {
+//     if(wiringPiSetup() == -1) {  // Initialising the wiringPi library
+//         cout << "Failed to initialize wiringPi library." << endl;
+//         return 0;
+//     }
 
-    Irrigation ir = Irrigation();
-    ir.start();
-    delay(10000);
-    ir.end();
+//     Irrigation ir = Irrigation();
+//     ir.start();
+//     delay(10000);
+//     ir.end();
 
-    return 0;
-}
+//     return 0;
+// }
