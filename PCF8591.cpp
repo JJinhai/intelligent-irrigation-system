@@ -3,42 +3,42 @@
 #include <stdio.h>
 #include <time.h>
 
-//PCF8591默认的I2C设备地址
+// Default I2C device address for PCF8591
 #define Address 0x48
 
-//模拟信号输入端的地址
+// Address of analog signal input pins
 #define BASE 0x40
 #define A0 0x40
 #define A1 0x41
 
-//供电(mV)
+// Power supply voltage (mV)
 #define POWER 5000
 
-//函数声明
+// Function declarations
 void ShowTime();
 float AD_work(unsigned char channel);
 
 int main(void)
 {
-	//初始化wiringPi设置
+	// Initialize wiringPi settings
 	wiringPiSetup();
 
-	//设置pcf8591的器件地址
+	// Set the device address for PCF8591
 	pcf8591Setup(BASE, Address);
 
 	float AD_val_left;
 	float AD_val_right;
 	while (1){
-		AD_val_left = AD_work(A0);//读取A0端口的电压值
-    AD_val_right = AD_work(A1);//读取A1端口的电压值
-		ShowTime(); //打印当前时间
-		printf("left value: %fmV\n", AD_val_left); //打印A0引脚的输入电压
-    printf("right value: %fmV\n", AD_val_right); //打印A0引脚的输入电压
+		AD_val_left = AD_work(A0);/// Read voltage value on A0 pin
+    AD_val_right = AD_work(A1);// Read voltage value on A1 pin
+		ShowTime(); // Print current time
+		printf("left value: %fmV\n", AD_val_left); // Print input voltage on A0 pin
+    printf("right value: %fmV\n", AD_val_right); // Print input voltage on A1 pin
 		delay(100);
 	}
 }
 
-//显示系统时间
+// Show system time
 void ShowTime()
 {
 	time_t t;
