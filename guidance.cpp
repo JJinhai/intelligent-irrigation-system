@@ -154,7 +154,7 @@ class Guidance{
     float vy = 0;
     bool terminate = false;
     float t = 0;
-    float dt = 0.1;
+    float dt = 0.05;
 
     // Store variables for later assessment
     std::vector<std::vector<float> > traj;
