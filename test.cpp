@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
     Infrared inf = Infrared();
     int t0=time(0);
     while(time(0) - t0 < 10 ){
-      float infrared_value = inf.getValue();
+      float infrared_value = inf.getFrontValue();
       cout<<"infrared_vale of the front: "<<infrared_value<<endl;
       float infrared_value_back = inf.getBackValue();
       cout<<"infrared_vale of the back: "<<infrared_value_back<<endl;
