@@ -46,7 +46,7 @@ void ShowTime()
 	int hour = 0, min = 0, sec = 0;
 	time(&t);
 	p = gmtime(&t);
-	hour = 8 + p->tm_hour; //获取当地时间，与UTC时间相差8小时
+	hour = 8 + p->tm_hour;  // Get local time, 8 hours ahead of UTC time
 	min = p->tm_min;
 	sec = p->tm_sec;
 	printf("\nNow time: %.2d:%.2d:%.2d\n", hour, min, sec);
@@ -54,12 +54,12 @@ void ShowTime()
 
 float AD_work(unsigned char channel)
 {
-	float AD_val = 0; //定义处理后的数值AD_val为浮点数
+	float AD_val = 0; // Define the processed value AD_val as a float
 	unsigned char i;
 	for (i = 0; i < 10; i++) 
-		AD_val += analogRead(channel); //转换10次求平均值(提高精度)
+		AD_val += analogRead(channel); // Convert 10 times and take the average (for higher accuracy)
 	AD_val /= 10;
-	AD_val = (AD_val * POWER)/ 255 ; //AD的参考电压是单片机上的5v，所以乘5即为实际电压值
+	AD_val = (AD_val * POWER)/ 255 ; // The reference voltage for AD is 5v on the microcontroller, so multiplying by 5 gives the actual voltage value
 	return AD_val;
 }
 
