@@ -1,9 +1,3 @@
-// React
-npx create-react-app car-interface
-cd car-interface
-npm start
-
-//
 import React, { useState } from "react";
 import "./CarInterface.css";
 
