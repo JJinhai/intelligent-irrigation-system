@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
     delay(10000);
     ir.end();
   }else if(str == "guidance"){
-    guidance_garden guidance1 = Guidance(fd);
+    Guidance_garden guidance1 = Guidance_garden(fd);
     guidance1.go_to_garden();
   }
   return 0;
