@@ -25,9 +25,9 @@ void go_ahead(int fd, Point point1,Point point2){
   while(leftDistance > 0){
     // Avoid avoid1 = Avoid(fd);
     if(leftDistance < 30){
-      m1.MotorGo(2000,2000,2000,2000, leftDistance / K*1000);
+      m1.MotorGo(4000,4000,4000,4000, leftDistance / K*1000);
     }else{
-      m1.MotorGo(2000,2000,2000,2000, diff / K*1000);
+      m1.MotorGo(4000,4000,4000,4000, diff / K*1000);
     }
     leftDistance -= diff;
 //     if(leftDistance >0){
