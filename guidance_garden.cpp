@@ -72,7 +72,7 @@ float steer(int fd, Point point1,Point point2,Point point3){
   return angle;
 };
 
-class Guidance{
+class Guidance_garden{
   public:
    int fd;
     Point start;
