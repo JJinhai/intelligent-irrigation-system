@@ -7,7 +7,7 @@
 #include "motor.cpp"
 
 using namespace std;
-const float K = 43.4783/1.25;
+const float K = 60;
 const float K_angle = 1.1636;
 #define nobs 68 // the number of the obstacle
 
@@ -25,9 +25,9 @@ void go_ahead(int fd, Point point1,Point point2){
   while(leftDistance > 0){
     // Avoid avoid1 = Avoid(fd);
     if(leftDistance < 30){
-      m1.MotorGo(2600,2600,2500,2500, leftDistance / K*1000);
+      m1.MotorGo(3700,3700,2200,2200, leftDistance / K*1000);
     }else{
-      m1.MotorGo(2600,2600,2500,2500, diff / K*1000);
+      m1.MotorGo(3700,3700,2200,2200, diff / K*1000);
     }
     leftDistance -= diff;
 //     if(leftDistance >0){
