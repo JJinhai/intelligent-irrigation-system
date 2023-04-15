@@ -7,7 +7,7 @@
 #include "motor.cpp"
 
 using namespace std;
-const float K = 43.4783;
+const float K = 43.4783/2;
 const float K_angle = 1.1636;
 #define nobs 68 // the number of the obstacle
 
