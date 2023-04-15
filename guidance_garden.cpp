@@ -5,7 +5,6 @@
 #include <cmath>
 #include <thread>
 #include "motor.cpp"
-#include "avoid.cpp"
 
 using namespace std;
 const float K = 43.4783;
@@ -24,7 +23,7 @@ void go_ahead(int fd, Point point1,Point point2){
   Motor m1 = Motor(fd);
   int triggle = true;
   while(leftDistance > 0){
-    Avoid avoid1 = Avoid(fd);
+    // Avoid avoid1 = Avoid(fd);
     if(leftDistance < 30){
       m1.MotorGo(2000,2000,2000,2000, leftDistance / K*1000);
     }else{
