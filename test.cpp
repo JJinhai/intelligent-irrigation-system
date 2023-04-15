@@ -5,11 +5,11 @@
 #include <sys/time.h>
 #include <algorithm>
 #include "ultrasonic.cpp"
-#include "motor.cpp"
+// #include "motor.cpp"
 #include "light.cpp"
 #include "Infrared.cpp"
 #include "irrigation.cpp"
-
+#include "guidance_garden.cpp"
 
 
 int main(int argc, char* argv[]){
@@ -47,6 +47,9 @@ int main(int argc, char* argv[]){
     ir.start();
     delay(10000);
     ir.end();
+  }else if(str == "guidance"){
+    guidance_garden guidance1 = Guidance(fd);
+    guidance1.go_to_garden();
   }
   return 0;
 }
