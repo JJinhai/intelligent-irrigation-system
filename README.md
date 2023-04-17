@@ -1,10 +1,10 @@
 # Intelligent Irrigation System
 Details in this [Report](Technical_Report.pdf) 
 ## Members
-- Weiwei(2740470W)
-- Jinhai Hu(2822462H)
-- Li Meiwen(2429437L)
-- Qian Xiaoyu(2824018Q)
+- Weiwei(2740470W) https://github.com/wayne-weiwei
+- Jinhai Hu(2822462H) https://github.com/JJinhai
+- Li Meiwen(2429437L) https://github.com/IrinLi
+- Qian Xiaoyu(2824018Q) https://github.com/hundunlong (most are committed as Qian,Xiaoyu )
 
 # Irrigation System
 ![Irrigation System](pics/system.jpg)
@@ -72,8 +72,27 @@ The software component of the irrigation system receives data from the soil mois
 ![flower](pics/flower.jpg)
 
 # compile commands
-g++ -o testMotor testMotor.cpp pca9685/pca9685.c -lwiringPi -pthread ./testMotor 2000 1/0
-g++ -o pre_guidance pre_guidance.cpp pca9685/pca9685.c -lwiringPi -pthread
-g++ -o 
+```bash
+// module test
+g++ -o testMotor testMotor.cpp pca9685/pca9685.c -lwiringPi -pthread 
+./testMotor 2000 1/0
+```
+```bash
+// main
+g++ -o main main.cpp pca9685/pca9685.c -lwiringPi -pthread
+```
+```bash
+// front
+cd client
+npm install // install the dependencies
+npm start // test in localhost
+npm run build // mkdir dist and build
+```
+```bash
+// server
+cd server
+g++ -o http http_server.cpp -pthread
+```
+
 # key word
 Raspberry C++ PCA9685
