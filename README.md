@@ -1,10 +1,10 @@
 # Intelligent Irrigation System
-
+Details in this report.[Details](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md) 
 ## Members
-Weiwei(2740470W)
-Jinhai Hu(2822462H)
-Li Meiwen(2429437L)
-Qian Xiaoyu(2824018Q)
+- Weiwei(2740470W)
+- Jinhai Hu(2822462H)
+- Li Meiwen(2429437L)
+- Qian Xiaoyu(2824018Q)
 
 # Irrigation System
 ![Irrigation System](pics/system.jpg)
@@ -68,5 +68,9 @@ The software component of the irrigation system receives data from the soil mois
 ![seedling](pics/seedling.jpg)
 ![flower](pics/flower.jpg)
 
+# compile commands
+g++ -o testMotor testMotor.cpp pca9685/pca9685.c -lwiringPi -pthread ./testMotor 2000 1/0
+g++ -o pre_guidance pre_guidance.cpp pca9685/pca9685.c -lwiringPi -pthread
+g++ -o 
 # key word
 Raspberry C++ PCA9685
