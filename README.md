@@ -1,5 +1,5 @@
 # Intelligent Irrigation System
-Details in this [Report](Technical_Report.pdf) 
+Details in this [Report](Technical _Report.pdf) 
 ## Members
 - Weiwei(2740470W)
 - Jinhai Hu(2822462H)
