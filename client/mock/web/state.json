@@ -1,0 +1,12 @@
+{ 
+  "servo":30,
+  "infrared1": 0,
+  "infrared2": 1,
+  "light1":0,
+  "light2":1800,
+  "motor1":2200,
+  "motor2":100,
+  "motor3":3000,
+  "motor4":4000,
+  "iswet":false
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const webpack = require('webpack');
+const path = require('path');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
@@ -12,16 +13,7 @@ Object.keys(proxyList).forEach( v =>{
   app.use(proxy(v,proxyList[v]))
 })
 
-var config;
-if(process.argv.slice(2) == 'component'){
-  config = require('./webpack.component.config.js');
-}else{
-  config = require('./webpack.config.js');
-}
-if(process.argv.slice(2) == 'map'){
-  config.entry[2] = './src/pages/map.jsx'
-}
-config.entry = [...config.entry,'webpack-hot-middleware/client']
+var config = require('./webpack.config.js');
 
 const compiler = webpack(config);
 // 告诉 express 使用 webpack-dev-middleware，
@@ -29,7 +21,9 @@ const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
-app.use(require("webpack-hot-middleware")(compiler));
+
+var staticPath = path.join(__dirname, '../mock')
+app.use('/static',express.static(staticPath))
 
 // 将文件 serve 到 port 3000。
 app.listen(3000, function () {

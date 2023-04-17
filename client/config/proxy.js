@@ -1,16 +1,17 @@
 const mockList = [
-  '/a'
+  '/web/state'
 ]
 
 
 const getMockOptions = (api) =>{
   var option = {
-    target: '127.0.0.1', // target host
+    target: 'http://127.0.0.1:3000', // target host
+    secure: false,
     changeOrigin: true,               // needed for virtual hosted sites
     ws: true,                         // proxy websockets
     pathRewrite: {}
   }
-  option.pathRewrite[`^${api}`] = api
+  option.pathRewrite[`^${api}`] = "/static" + api + ".json"
   return option
 };
 
