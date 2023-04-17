@@ -7,8 +7,8 @@
 #include "motor.cpp"
 
 using namespace std;
-const float K = 60;
-const float K_angle = 1.1636;
+const float K = 52.63;
+const float K_angle = 1.5607;
 #define nobs 68 // the number of the obstacle
 
 struct Point {

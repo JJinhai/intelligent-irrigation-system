@@ -8,8 +8,8 @@
 #include "avoid.cpp"
 
 using namespace std;
-const float K = 43.4783;
-const float K_angle = 1.1636;
+const float K = 52.63;
+const float K_angle = 1.5607;
 #define nobs 13 // the number of the obstacle
 
 struct Point {
@@ -26,9 +26,9 @@ void go_ahead(int fd, Point point1,Point point2){
   while(leftDistance > 0){
     Avoid avoid1 = Avoid(fd);
     if(leftDistance < 30){
-      m1.MotorGo(2000,2000,2000,2000, leftDistance / K*1000);
+      m1.MotorGo(2650,2650,2200,2200, leftDistance / K*1000);
     }else{
-      m1.MotorGo(2000,2000,2000,2000, diff / K*1000);
+      m1.MotorGo(2650,2650,2200,2200, diff / K*1000);
     }
     leftDistance -= diff;
     if(leftDistance >0){
@@ -62,11 +62,11 @@ float steer(int fd, Point point1,Point point2,Point point3){
   float t = abs(angle) / K_angle;
   if(angle < 0){
     Motor m1 = Motor(fd);
-    m1.MotorGo(2000,2000,-2000,-2000,t*1000);
+    m1.MotorGo(2200,2200,-2200,-2200,t*1000);
     cout<<  "right time" << t << endl;
   }else{
     Motor m1 = Motor(fd);
-    m1.MotorGo(-2000,-2000,2000,2000,t*1000);
+    m1.MotorGo(-2200,-2200,2200,2200,t*1000);
     cout<<  "left time" << t << endl;
   }
   return angle;
