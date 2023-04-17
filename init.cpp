@@ -17,7 +17,7 @@ int main(void){
   }
   int fd = pca9685Setup(PIN_BASE, 0x40, HERTZ);
   Motor m1 = Motor(fd);
-	m1.MotorGo(1000,1000,1000,1000,t*1000);
-  motor.stop_car();
+	//m1.MotorGo(1000,1000,1000,1000,t*1000);
+  m1.stop_car();
   return 0;
 }

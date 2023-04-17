@@ -3,18 +3,18 @@
 #include <stdio.h>
 #include <time.h>
 #include <thread>
-//PCF8591默认的I2C设备地址
+//PCF8591 default I2C device address
 #define Address 0x48
 
-//模拟信号输入端的地址
+//Address of the analogue signal input
 #define BASE 0x40
 #define A0 0x40
 #define A1 0x41
 
-//供电(mV)
+//Power supply (mV)
 #define POWER 5000
 
-//函数声明
+//Function declarations
 void ShowTime();
 float AD_work(unsigned char channel);
 
@@ -27,22 +27,22 @@ class Light{
       isLighting = false;
     }
     float AD_work(unsigned char channel){
-      float AD_val = 0; //定义处理后的数值AD_val为浮点数
+      float AD_val = 0; //Define the processed value AD_val as a floating point number
       unsigned char i;
       for (i = 0; i < 10; i++) 
-        AD_val += analogRead(channel); //转换10次求平均值(提高精度)
+        AD_val += analogRead(channel); //Average of 10 conversions (to improve accuracy)
       AD_val /= 10;
-      AD_val = (AD_val * POWER)/ 255 ; //AD的参考电压是单片机上的5v，所以乘5即为实际电压值
+      AD_val = (AD_val * POWER)/ 255 ; //The reference voltage of the AD is 5v on the microcontroller, so multiplying by 5 is the actual voltage value
       return AD_val;
     }
-    //显示系统时间
+    //Show system time
     void ShowTime(){
       time_t t;
       struct tm *p;
       int hour = 0, min = 0, sec = 0;
       time(&t);
       p = gmtime(&t);
-      hour = 8 + p->tm_hour; //获取当地时间，与UTC时间相差8小时
+      hour = 8 + p->tm_hour; //Get local time, 8 hours difference from UTC time
       min = p->tm_min;
       sec = p->tm_sec;
       printf("\nNow time: %.2d:%.2d:%.2d\n", hour, min, sec);
@@ -53,11 +53,11 @@ class Light{
         float AD_val_left;
         float AD_val_right;
         while (isLighting){
-          AD_val_left = AD_work(A0);//读取A0端口的电压值
-          AD_val_right = AD_work(A1);//读取A1端口的电压值
-          ShowTime(); //打印当前时间
-          printf("left value: %fmV\n", AD_val_left); //打印A0引脚的输入电压
-          printf("right value: %fmV\n", AD_val_right); //打印A0引脚的输入电压
+          AD_val_left = AD_work(A0);//Reading the voltage value of port A0
+          AD_val_right = AD_work(A1);//Reading the voltage value of port A1
+          ShowTime(); //Print current time
+          printf("left value: %fmV\n", AD_val_left); //Print the input voltage of the A0 pin
+          printf("right value: %fmV\n", AD_val_right); //Print the input voltage of the A0 pin
           delay(1000);
         }
       });
@@ -69,12 +69,12 @@ class Light{
 
     float getLeftValue(){
       float AD_val_left;
-      AD_val_left = AD_work(A0);//读取A0端口的电压值
+      AD_val_left = AD_work(A0);//Reading the voltage value of port A0
       return AD_val_left;
     }
     float getRightValue(){
       float AD_val_right;
-      AD_val_right = AD_work(A1);//读取A1端口的电压值
+      AD_val_right = AD_work(A1);//Reading the voltage value of port A1
       return AD_val_right;
     }
 };
