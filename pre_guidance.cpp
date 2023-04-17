@@ -9,7 +9,7 @@
 using namespace std;
 const float K = 52.63;
 const float K_angle = 1.5607;
-#define nobs 13 // the number of the obstacle
+#define nobs 16 // the number of the obstacle
 
 struct Point {
     float x;
@@ -108,13 +108,13 @@ class Guidance{
     int xo[nobs] = { 
       45,45,45,45,
       168,168,168,
-      208,248,288,328,368,
+      208,248,288,328,368,408,448,488,
       253
     };  // the position of obstacles
     int yo[nobs] = { 
       30,60,100,130,
       70,110,150,
-      70,70,70,70,70,
+      70,70,70,70,70,70,70,70
       0
     };  // the position of obstacles
     
@@ -122,7 +122,7 @@ class Guidance{
     int rho_0[nobs] = {
       20,20,20,20,
       20,20,20,
-      20,20,20,20,20,
+      20,20,20,20,20,20,20,20
       55
     };  // size of the obstacles
 
@@ -132,7 +132,7 @@ class Guidance{
     int Kr[nobs] = {
       500,500,500,500,
       500,500,500,
-      500,500,500,500,500,
+      500,500,500,500,500,500,500,500
       500
     };
     int mass = 5;
