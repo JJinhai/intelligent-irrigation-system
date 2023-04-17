@@ -83,9 +83,9 @@ class Guidance{
       printf("Error in setup\n");
     }
     start.x = 377;
-    start.y = 0;
+    start.y = 50;
     end.x = 0;
-    end.y = 204;
+    end.y = 254;
    }
    void go_to_garden(){
     run(start,end,true);
