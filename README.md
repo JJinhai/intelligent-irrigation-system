@@ -1,5 +1,5 @@
 # Intelligent Irrigation System
-Details in this report.[Details](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md) 
+Details in this [Report](Technical_Report.pdf) 
 ## Members
 - Weiwei(2740470W)
 - Jinhai Hu(2822462H)
