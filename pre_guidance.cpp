@@ -31,16 +31,16 @@ void go_ahead(int fd, Point point1,Point point2){
       m1.MotorGo(2650,2650,2200,2200, diff / K*1000);
     }
     leftDistance -= diff;
-    if(leftDistance >0){
-      if(avoid1.detect()){
-        cout<< "obstacle front" << endl;
-        if(triggle){
-          avoid1.fakeMove();
-          leftDistance -= 120;
-        }
-        triggle = false;
-      }
-    }
+    // if(leftDistance >0){
+    //   if(avoid1.detect()){
+    //     cout<< "obstacle front" << endl;
+    //     if(triggle){
+    //       avoid1.fakeMove();
+    //       leftDistance -= 120;
+    //     }
+    //     triggle = false;
+    //   }
+    // }
   }
   cout<<  "go ahead distance" << distance << endl;
 }
