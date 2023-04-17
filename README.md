@@ -9,6 +9,13 @@ Details in this [Report](Technical_Report.pdf)
 # Irrigation System
 ![Irrigation System](pics/system.jpg)
 The Irrigation System is designed to automatically water plants based on their needs. It uses sensors to monitor soil moisture levels and adjusts the watering schedule accordingly.
+## Social Medium
+<!-- Needed to display sideways -->
+
+<!-- display the social media buttons in your README -->
+
+[![youtube](pics/youtube)](https://youtu.be/ZXm1-mIXwO8)
+
 
 ## Hardware Components
 
