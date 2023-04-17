@@ -1,10 +1,13 @@
-This is the repository for the embedded project
-# title
-intelligent irrigation system
-# key word
-QT Raspberry C++ PCA9685
-# Irrigation System
+# Intelligent Irrigation System
 
+## Members
+Weiwei(2740470W)
+Jinhai Hu(2822462H)
+Li Meiwen(2429437L)
+Qian Xiaoyu(2824018Q)
+
+# Irrigation System
+![Irrigation System](pics/system.png)
 The Irrigation System is designed to automatically water plants based on their needs. It uses sensors to monitor soil moisture levels and adjusts the watering schedule accordingly.
 
 ## Hardware Components
@@ -59,3 +62,11 @@ The light-sensitive sensor measures the ambient light, ensuring optimal lighting
 ## 4) Irrigation System
 ![Flowchat](pics/Flowchat.png)
 The software component of the irrigation system receives data from the soil moisture sensors and controls the water pump accordingly.
+
+# The process of flower growing
+![seed](pics/seed.png)
+![seedling](pics/seedling.png)
+![flower](pics/flower.png)
+
+# key word
+Raspberry C++ PCA9685
