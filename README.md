@@ -7,7 +7,7 @@ Li Meiwen(2429437L)
 Qian Xiaoyu(2824018Q)
 
 # Irrigation System
-![Irrigation System](pics/system.png)
+![Irrigation System](pics/system.pjpg)
 The Irrigation System is designed to automatically water plants based on their needs. It uses sensors to monitor soil moisture levels and adjusts the watering schedule accordingly.
 
 ## Hardware Components
@@ -64,9 +64,9 @@ The light-sensitive sensor measures the ambient light, ensuring optimal lighting
 The software component of the irrigation system receives data from the soil moisture sensors and controls the water pump accordingly.
 
 # The process of flower growing
-![seed](pics/seed.png)
-![seedling](pics/seedling.png)
-![flower](pics/flower.png)
+![seed](pics/seed.jpg)
+![seedling](pics/seedling.jpg)
+![flower](pics/flower.jpg)
 
 # key word
 Raspberry C++ PCA9685
