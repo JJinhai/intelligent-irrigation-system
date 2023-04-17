@@ -11,9 +11,9 @@ int main(int argc, char* argv[])
   int duration = std::atoi(argv[1]);
   int direction = std::atoi(argv[2]);
   if(direction == 1){
-    m1.MotorGo(3000,3000,3000,3000,duration);
+    m1.MotorGo(2500,2500,2500,2500,duration);
   }else{
-    m1.MotorGo(3000,3000,-3000,-3000,duration);
+    m1.MotorGo(2500,2500,-2500,-2500,duration);
   }
   return 0;
 }
