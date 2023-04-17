@@ -7,7 +7,7 @@ Li Meiwen(2429437L)
 Qian Xiaoyu(2824018Q)
 
 # Irrigation System
-![Irrigation System](pics/system.pjpg)
+![Irrigation System](pics/system.jpg)
 The Irrigation System is designed to automatically water plants based on their needs. It uses sensors to monitor soil moisture levels and adjusts the watering schedule accordingly.
 
 ## Hardware Components
