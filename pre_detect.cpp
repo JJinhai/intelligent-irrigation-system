@@ -33,7 +33,7 @@ int main(void){
     float light_right = l1.getRightValue();
     cout<<"light_right: "<<light_right<<endl;
     if(light_left > 3000 || light_right > 3000){
-      // guidance1.go_to_garden();
+      guidance1.go_to_garden();
       std::cout << "go to garden"<<endl;
       triggle_light = false;
     }
