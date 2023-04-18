@@ -12,9 +12,9 @@ class Buzzer{
       pinMode(Buzzer_Pin,OUTPUT);
     }
     void run(int time = 100){
-      digitalWrite(Trigger_pin,HIGH); 
+      digitalWrite(Buzzer_Pin,HIGH); 
       delay(time);
-      digitalWrite(Trigger_pin,LOW); 
+      digitalWrite(Buzzer_Pin,LOW); 
     }
-  }
+  };
 };
