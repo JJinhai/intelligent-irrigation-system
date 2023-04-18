@@ -75,7 +75,7 @@ int main(void){
   int t0 = time(0);
   int x = 0;
   int y = 0;
-  while(time(0)-t0 < 60){     
+  while(time(0)-t0 < 10){     
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo(0,i);
       delay(200);
