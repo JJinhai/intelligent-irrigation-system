@@ -92,7 +92,7 @@ int main(void){
     x += temp[0];
     y += temp[1];
   }
-  float t = (x - y)/3000;
+  float t = (x - y)/3;
   motor.MotorGo(1500,1500,-1500,-1500,t);
   return 0;
 }
