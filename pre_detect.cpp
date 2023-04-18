@@ -59,6 +59,7 @@ int main(void){
     }
   }
   if(triggle){
+    std::cout << "back home"<<endl;
     guidance1.back_home();
     triggle = false;
   }
