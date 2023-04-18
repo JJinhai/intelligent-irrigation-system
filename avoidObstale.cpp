@@ -55,7 +55,8 @@ int* run_motor(Motor motor,int L,int M,int R){
   }else {
     motor.MotorGo(1200,1200,1200,1200);
   }
-  return { rotate1,rotate2 };
+  int* a =  { rotate1,rotate2 };
+  return a;
 };
 
 int main(void){
