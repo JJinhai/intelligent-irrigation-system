@@ -91,19 +91,14 @@ class Guidance{
     run(start,end,true);
    }
    void back_home(){
-    std::cout << "backhome1"<<std::endl;
     float angle = M_PI - steerDegree; // 0 - steerDegree
     float t = abs(angle) / K_angle;
     Motor m1 = Motor(fd);
-    std::cout << "backhome2"<<std::endl;
     m1.MotorGo(-2500,-2500,2500,2500,t*1000);
-    std::cout << "backhome3"<<std::endl;
     steerDegree = 0;
-    std::cout << "backhome4"<<std::endl;
     run(end,start,false);
    }
    void run(Point start,Point end, bool isAhead){
-    std::cout << "backhome run1"<<std::endl;
     //// Define the artificial potential field parameters
     // Points of attraction
     int xa = end.x;
@@ -151,7 +146,6 @@ class Guidance{
     // float Fdc = {};
     // float Fc = {};
     std::cout << terminate <<std::endl;
-    std::cout << "backhome run2"<<std::endl;
     while(!terminate){
         //// Check if reached destination
         float rho = sqrt(pow((xa-x),2)+pow((ya-y),2));
@@ -230,7 +224,6 @@ class Guidance{
     //     std::cout << element2 << " " << endl;
     //   }
     // }
-    std::cout << "backhome run3"<<std::endl;
 
     std::vector<std::vector<float> > path;
     for (size_t i = 0; i < traj[0].size(); ++i) {
@@ -273,7 +266,6 @@ class Guidance{
       point3.y = element3_y;
 
       cout << "position:" << point3.x << " " << point3.y << endl;
-      std::cout << "backhome run4"<<std::endl;
       go_ahead(fd,point2,point3);
       float d0 = steer(fd,point1,point2,point3);
       if(isAhead){
