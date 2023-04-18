@@ -6,7 +6,9 @@
 #include <algorithm>
 #include "irrigation.cpp"
 
-
+#define PIN_BASE 300
+#define MAX_PWM 4096
+#define HERTZ 50
 int main(int argc, char* argv[]){
   if(wiringPiSetup()==-1){
     printf("setup wiringPi failed!\n");
