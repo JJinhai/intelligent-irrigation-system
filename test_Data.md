@@ -1,11 +1,6 @@
-2650 2650 2200 2200 
-200 3800ms
-
-2200 2200 -2200 -2200
-2Pi 3950
-
-K = 52.63;
-K_angle = 1.5607;
+避障演示
+g++ -o pre_avoid avoidObstale.cpp pca9685/pca9685.c -lwiringPi -pthread
+./pre_avoid
 
 
 g++ -o testMotor testMotor.cpp pca9685/pca9685.c -lwiringPi -pthread
