@@ -103,6 +103,7 @@ class Guidance{
     run(end,start,false);
    }
    void run(Point start,Point end, bool isAhead){
+    std::cout << "backhome run1"<<std::endl;
     //// Define the artificial potential field parameters
     // Points of attraction
     int xa = end.x;
@@ -149,7 +150,8 @@ class Guidance{
     // float Frc = {}; 
     // float Fdc = {};
     // float Fc = {};
-    
+    std::cout << terminate <<std::endl;
+    std::cout << "backhome run2"<<std::endl;
     while(!terminate){
         //// Check if reached destination
         float rho = sqrt(pow((xa-x),2)+pow((ya-y),2));
@@ -270,6 +272,7 @@ class Guidance{
       point3.y = element3_y;
 
       cout << "position:" << point3.x << " " << point3.y << endl;
+      std::cout << "backhome run3"<<std::endl;
       go_ahead(fd,point2,point3);
       float d0 = steer(fd,point1,point2,point3);
       if(isAhead){
