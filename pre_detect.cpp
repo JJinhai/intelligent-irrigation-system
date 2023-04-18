@@ -40,10 +40,10 @@ int main(void){
   bool isRun = true;
 
   int count = 0;
-  std::cout << "getFrontValue"<<endl;
+  std::cout << "getFrontValue"<<std::endl;
   while(!triggle){ // && time(0) - t0 < 30
     delay(1000);
-    std::cout << "while triggle"<<endl;
+    std::cout << "while triggle"<<std::endl;
     float infrared_value = inf.getFrontValue();
     cout<<"front infrared: "<<infrared_value<<"--";
     float infrared_value_back = inf.getBackValue();
@@ -59,12 +59,10 @@ int main(void){
     }
   }
   if(triggle){
-    std::cout << "back home"<<endl;
+    std::cout << "back home"<<std::endl;
     guidance1.back_home();
     triggle = false;
   }
-
-
   return 0;
 }
 

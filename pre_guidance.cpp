@@ -91,12 +91,15 @@ class Guidance{
     run(start,end,true);
    }
    void back_home(){
+    std::cout << "backhome1"<<std::endl;
     float angle = M_PI - steerDegree;
     float t = abs(angle) / K_angle;
     Motor m1 = Motor(fd);
+    std::cout << "backhome2"<<std::endl;
     m1.MotorGo(-1000,-1000,1000,1000,t*1000);
-    
+    std::cout << "backhome3"<<std::endl;
     steerDegree = 0;
+    std::cout << "backhome4"<<std::endl;
     run(end,start,false);
    }
    void run(Point start,Point end, bool isAhead){
