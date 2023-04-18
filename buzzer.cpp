@@ -16,5 +16,4 @@ class Buzzer{
       delay(time);
       digitalWrite(Buzzer_Pin,LOW); 
     }
-  };
 };
