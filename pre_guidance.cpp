@@ -18,7 +18,7 @@ struct Point {
 void go_ahead(int fd, Point point1,Point point2){
   float distance = sqrt(pow((point1.x-point2.x),2)+pow((point1.y-point2.y),2));
   float t = distance / K;
-  float diff = 30;
+  float diff = 31;
   float leftDistance = distance;
   Motor m1 = Motor(fd);
   int triggle = true;
@@ -51,7 +51,7 @@ float steer(int fd, Point point1,Point point2,Point point3){
   float angleInit;
   if(point1.x == -1){ // it is the init state
     tanValueInit = 0;
-    angleInit = M_PI/2;
+    angleInit = M_PI;
   }else{
     tanValueInit = (point2.y - point1.y)/(point2.x - point1.x);
     angleInit = atan(tanValueInit);
@@ -106,22 +106,22 @@ class Guidance{
     int ya = end.y;
 
     int xo[nobs] = { 
-      45,45,45,45,168,168,168,188,208,228,248,288,328,368,408,448,488,528,568,253
+      45,45,45,45,168,168,168,188,208,228,248,268,288,328,368,408,448,488,528,568,253
     };  // the position of obstacles
     int yo[nobs] = { 
-      80,110,150,180,120,160,200,120,120,120,120,120,120,120,120,120,120,120,120,50
+      80,110,150,180,120,160,200,120,120,120,120,120,120,120,120,120,120,120,120,120,50
     };  // the position of obstacles
     
     // Size of obstacles (rho_0)
     int rho_0[nobs] = {
-      30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33
+      30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33
     };  // size of the obstacles
 
     // Constants.
     int Ka = 1; 
     int Kv = 50; 
     int Kr[nobs] = {
-        600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600
+        600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600
     };
     int mass = 5;
 
