@@ -114,7 +114,7 @@ class Guidance{
     
     // Size of obstacles (rho_0)
     int rho_0[nobs] = {
-      24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,27
+      30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33
     };  // size of the obstacles
 
     // Constants.
