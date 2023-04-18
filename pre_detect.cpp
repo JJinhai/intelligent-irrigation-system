@@ -25,14 +25,15 @@ int main(void){
   bool triggle = false;
   Guidance guidance1 = Guidance(fd);
 
-  while(1){
+  bool triggle_light = true;
+  while(triggle_light){
     float light_left = l1.getLeftValue();
     cout<<"light_left: "<<light_left<<"--";
     float light_right = l1.getRightValue();
     cout<<"light_right: "<<light_right<<endl;
     if(light_left > 3000 || light_right > 3000){
       guidance1.go_to_garden();
-      break;
+      triggle_light = false;
     }
   }
   bool isRun = true;
