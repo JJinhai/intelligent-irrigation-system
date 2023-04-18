@@ -11,32 +11,51 @@
 #define MAX_PWM 4096
 #define HERTZ 50
 
-void run_motor(Motor motor,int L,int M,int R){
+int* run_motor(Motor motor,int L,int M,int R){
+  int rotate1 = 0;
+  int rotate2 = 0;
   if ((L < 30 && M < 30 && R <30) || (L > 30 && M < 30 && R > 30)){
     motor.MotorGo(-1450,-1450,-1450,-1450);
     delay(0.1);
     if(L < R){
-      motor.MotorGo(1450,1450,-1450,-1450);
+      motor.MotorGo(1500,1500,-1500,-1500);
+      rotate1 += 1500;
+      rotate2 -= 1500;
     }else{
-      motor.MotorGo(-1450,-1450,1450,1450);
+      motor.MotorGo(-1500,-1500,1500,1500);
+      rotate1 -= 1500;
+      rotate2 += 1500;
     }
   }else if(L < 30 && M < 30){
     motor.MotorGo(1500,1500,-1500,-1500);
+    rotate1 += 1500;
+    rotate2 -= 1500;
   }else if( R < 30 && M < 30){
     motor.MotorGo(-1500,-1500,1500,1500);
+    rotate1 += 1500;
+    rotate2 -= 1500;
   }else if( L < 20 ){
     motor.MotorGo(2000,2000,-500,-500);
+    rotate1 += 2000;
+    rotate2 -= 500;
     if(L < 10){
       motor.MotorGo(1500,1500,-1000,-1000);
+      rotate1 += 1500;
+      rotate2 -= 1000;
     }
   }else if(R < 20){
     motor.MotorGo(-500,-500,2000,2000);
+    rotate1 -= 500;
+    rotate2 += 2000;
     if(R < 10){
       motor.MotorGo(-1500,-1500,1500,1500);
+      rotate1 -= 1500;
+      rotate2 += 1500;
     }
   }else {
     motor.MotorGo(1200,1200,1200,1200);
   }
+  return { rotate1,rotate2 }
 };
 
 int main(void){
@@ -51,6 +70,8 @@ int main(void){
   Ultrasonic u = Ultrasonic();
   int L = 300,M = 300,R = 300;
   int t0 = time(0);
+  int x = 0;
+  int y = 0;
   while(time(0)-t0 < 60){     
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo(0,i);
@@ -64,8 +85,12 @@ int main(void){
       }
     }
     servo.setServo(0,90);
-    run_motor(motor,L,M,R);
+    int* temp = run_motor(motor,L,M,R);
+    x += temp[0];
+    y += temp[1];
   }
+  float t = (x - y)/3000;
+  motor.MotorGo(1500,1500,-1500,-1500,t);
   return 0;
 }
 
