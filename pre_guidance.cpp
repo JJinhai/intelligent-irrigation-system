@@ -92,7 +92,7 @@ class Guidance{
    }
    void back_home(){
     std::cout << "backhome1"<<std::endl;
-    float angle =0 - steerDegree; //M_PI - steerDegree;
+    float angle = M_PI - steerDegree; // 0 - steerDegree
     float t = abs(angle) / K_angle;
     Motor m1 = Motor(fd);
     std::cout << "backhome2"<<std::endl;
@@ -230,6 +230,7 @@ class Guidance{
     //     std::cout << element2 << " " << endl;
     //   }
     // }
+    std::cout << "backhome run3"<<std::endl;
 
     std::vector<std::vector<float> > path;
     for (size_t i = 0; i < traj[0].size(); ++i) {
@@ -272,7 +273,7 @@ class Guidance{
       point3.y = element3_y;
 
       cout << "position:" << point3.x << " " << point3.y << endl;
-      std::cout << "backhome run3"<<std::endl;
+      std::cout << "backhome run4"<<std::endl;
       go_ahead(fd,point2,point3);
       float d0 = steer(fd,point1,point2,point3);
       if(isAhead){
