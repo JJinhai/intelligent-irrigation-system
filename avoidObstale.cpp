@@ -94,7 +94,7 @@ int main(void){
   }
   float t = (x - y)/3000;
   if( t > 0){
-    motor.MotorGo(-1500,-1500,1500,1500,abs(t());
+    motor.MotorGo(-1500,-1500,1500,1500,abs(t));
   }else{
     motor.MotorGo(1500,1500,-1500,-1500,abs(t));
   }
