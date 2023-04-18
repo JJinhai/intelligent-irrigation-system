@@ -9,7 +9,7 @@
 using namespace std;
 const float K = 52.63;
 const float K_angle = 1.5607;
-#define nobs 20 // the number of the obstacle
+#define nobs 21 // the number of the obstacle
 
 struct Point {
     float x;
