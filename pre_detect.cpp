@@ -59,13 +59,14 @@ int main(void){
       count = 0;
     }
   }
+  Buzzer buzzer = Buzzer();
   if(triggle){
     std::cout << "back home"<<std::endl;
-    Buzzer buzzer = Buzzer();
-    buzzer.run();
+    buzzer.run(1000);
     guidance1.back_home();
     triggle = false;
   }
+  buzzer.run(1000);
   return 0;
 }
 
