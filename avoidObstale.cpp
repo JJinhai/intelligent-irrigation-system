@@ -75,7 +75,7 @@ int main(void){
   int t0 = time(0);
   int x = 0;
   int y = 0;
-  while(time(0)-t0 < 40){     
+  while(time(0)-t0 < 20){     
     for(int i = 30 ; i < 151 ; i = i+60){
       servo.setServo(0,i);
       delay(200);
@@ -92,11 +92,21 @@ int main(void){
     x += temp[0];
     y += temp[1];
   }
-  float t = (x - y)/3;
-  if( t > 0){
-    motor.MotorGo(-1500,-1500,1500,1500,abs(t));
-  }else{
-    motor.MotorGo(1500,1500,-1500,-1500,abs(t));
+  float t = (x - y)/3000;
+  int num = ceil(abs(t) / 1000);
+  for(int i = 0;i++;i<num){
+    int duration = 1000;
+    if( i == num -1 ){
+      duration = abs(t) - 1000 * ( num - 1);
+    }
+    if( t > 0){
+      motor.MotorGo(-1500,-1500,1500,1500,duration);
+    }else{
+      motor.MotorGo(1500,1500,-1500,-1500,duration);
+    }
   }
   return 0;
 }
+
+    
+    
