@@ -30,7 +30,7 @@ int main(void){
     cout<<"light_left: "<<light_left<<"--";
     float light_right = l1.getRightValue();
     cout<<"light_right: "<<light_right<<endl;
-    if(light_left > 2000 || light_right > 2000){
+    if(light_left > 3000 || light_right 3000){
       guidance1.go_to_garden();
       break;
     }
