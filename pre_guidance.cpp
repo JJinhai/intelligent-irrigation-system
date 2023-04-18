@@ -51,7 +51,7 @@ float steer(int fd, Point point1,Point point2,Point point3){
   float angleInit;
   if(point1.x == -1){ // it is the init state
     tanValueInit = 0;
-    angleInit = M_PI;
+    angleInit = 0;  //M_PI/2;
   }else{
     tanValueInit = (point2.y - point1.y)/(point2.x - point1.x);
     angleInit = atan(tanValueInit);
