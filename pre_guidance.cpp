@@ -27,7 +27,7 @@ void go_ahead(int fd, Point point1,Point point2){
     if(leftDistance < 30){
       m1.MotorGo(2500,2500,2400,2400, leftDistance / K*1000);
     }else{
-      m1.MotorGo(2500,2500,2400,2400,, diff / K*1000);
+      m1.MotorGo(2500,2500,2400,2400, diff / K*1000);
     }
     leftDistance -= diff;
     // if(leftDistance >0){
