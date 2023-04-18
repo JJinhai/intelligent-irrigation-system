@@ -7,6 +7,7 @@
 #include "Infrared.cpp"
 #include "pre_guidance.cpp"
 #include "buzzer.cpp"
+#include "irrigation.cpp"
 
 #define PIN_BASE 300
 #define MAX_PWM 4096
@@ -38,7 +39,13 @@ int main(void){
       triggle_light = false;
     }
   }
-  bool isRun = true;
+
+  Buzzer buzzer = Buzzer();
+  Irrigation ir = Irrigation();
+  ir.start();
+  delay(20000);
+  ir.end();
+  buzzer.run(200);
 
   int count = 0;
   std::cout << "getFrontValue"<<std::endl;
@@ -54,12 +61,10 @@ int main(void){
       count += 1;
     }
     if(count >= 3){
-      isRun = false;
       triggle = true;
       count = 0;
     }
   }
-  Buzzer buzzer = Buzzer();
   if(triggle){
     std::cout << "back home"<<std::endl;
     buzzer.run(1000);
