@@ -32,8 +32,8 @@ int* run_motor(Motor motor,int L,int M,int R){
     rotate2 -= 1500;
   }else if( R < 30 && M < 30){
     motor.MotorGo(-1500,-1500,1500,1500);
-    rotate1 += 1500;
-    rotate2 -= 1500;
+    rotate1 -= 1500;
+    rotate2 += 1500;
   }else if( L < 20 ){
     motor.MotorGo(2000,2000,-500,-500);
     rotate1 += 2000;
@@ -100,7 +100,3 @@ int main(void){
   }
   return 0;
 }
-
-
-    
-    
