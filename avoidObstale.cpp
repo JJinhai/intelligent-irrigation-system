@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #include "motor.cpp"
 #include "servo.cpp"
 #include "ultrasonic.cpp"
@@ -108,5 +109,4 @@ int main(void){
   return 0;
 }
 
-    
     
