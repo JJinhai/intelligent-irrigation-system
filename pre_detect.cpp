@@ -6,6 +6,7 @@
 #include "light.cpp"
 #include "Infrared.cpp"
 #include "pre_guidance.cpp"
+#include "buzzer.cpp"
 
 #define PIN_BASE 300
 #define MAX_PWM 4096
@@ -60,6 +61,8 @@ int main(void){
   }
   if(triggle){
     std::cout << "back home"<<std::endl;
+    Buzzer buzzer = Buzzer();
+    buzzer.run();
     guidance1.back_home();
     triggle = false;
   }
