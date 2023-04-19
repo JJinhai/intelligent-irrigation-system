@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch } from 'antd';
 
 const CarInterface = () => {
-  const [autoMode, setAutoMode] = useState(true);
+  // const [autoMode, setAutoMode] = useState(true);
   const [ motors, setMotors] = useState([0, 0, 0, 0]);
   const [lightSensors, setLightSensors] = useState([0, 0]);
   const [infraredSensors, setInfraredSensors] = useState([0, 0]);
@@ -36,13 +36,6 @@ const CarInterface = () => {
   return (
     <div className="car-interface">
       <h1>Car Interface</h1>
-
-      <p>
-        <span>Manual Mode</span>
-        <Switch checked={autoMode} onChange={setAutoMode} />
-        <span>Automatic Mode</span>
-      </p>
-
       <div className="overall">
         <div className="infrared-sensors front" style={{ left: 250,top: 65}}>
           <h3>Front Infrared Sensors</h3>
